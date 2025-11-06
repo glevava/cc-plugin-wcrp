@@ -565,27 +565,17 @@
 <hr />
 <h2 id="what-each-plugin-does">What Each Plugin Does</h2>
 <p>Each WCRP plugin:</p>
-<ol>
-<li>
 <p><strong>Loads its configuration file</strong> (<code>wcrp_cmip6.toml</code> or <code>wcrp_cordex_cmip6.toml</code>), which defines:</p>
-</li>
-<li>
-<p>Which checks to run (DRS, attributes, time, metadata, etc.)</p>
-</li>
-<li>
-<p>The severity of each check (High = Mandatory, Medium = Recommended, Low = Warning)</p>
-</li>
-<li>
+<ul>
+<li>Which checks to run (DRS, attributes, time, metadata, etc.)</li>
+<li>The severity of each check (High = Mandatory, Medium = Recommended, Low = Warning)</li>
+</ul>
 <p><strong>Runs the atomic checks</strong> implemented in <code>checks/…</code>:</p>
-</li>
-<li>
-<p>Examples: dimension existence/size, variable shape, time bounds, filename/DRS consistency, physical plausibility, missing values, etc.</p>
-</li>
-<li>
+<ul>
+<li>Examples: dimension existence/size, variable shape, time bounds, filename/DRS consistency, physical plausibility, missing values, etc.</li>
+</ul>
 <p><strong>Aggregates results</strong> and returns them to the Compliance Checker core,<br />
    which formats them into human-readable or machine-readable outputs (text, HTML, JSON).</p>
-</li>
-</ol>
 <hr />
 <h2 id="toml-configuration-files">TOML Configuration Files</h2>
 <p>Each plugin is driven by its own TOML file:</p>
