@@ -638,13 +638,15 @@ These checks confirm that:
 <h2 id="drs-path-consistency-checks">📁 DRS &amp; Path Consistency Checks</h2>
 <p>Validate filenames and directory paths and compare with the netcdf file's attributes; verify consistency between attributes like <strong>frequency vs table_id</strong>, <code>experiment_id</code>, <code>institution</code>, <code>variant_label</code>, etc., against project rules/CVs.</p>
 <h2 id="data-plausibility-checks">🧬 Data Plausibility Checks</h2>
-<p>Perform <strong>data-level plausibility tests</strong> on numeric variables:
-- Check NaN and infinite .<br />
-- Check Constant .<br />
-- Check Fill Value or Missing values filling.<br />
-- Detect Physically impossible or statistically extreme outliers.<br />
-- Check Chunk size.
-- </p>
+<p>Perform <strong>data-level plausibility tests</strong> on numeric variables:</p>
+<ul>
+<li>Check NaN and infinite .  </li>
+<li>Check Constant .  </li>
+<li>Check Fill Value or Missing values filling.  </li>
+<li>Detect Physically impossible or statistically extreme outliers.  </li>
+<li>Check Chunk size.</li>
+<li></li>
+</ul>
 <h2 id="file-format-compression-checks">📦 File Format &amp; Compression Checks</h2>
 <p>These checks ensure that the <strong>NetCDF file format</strong> and <strong>compression options</strong> comply with project and ESGF recommendations.</p>
 <h2 id="detailed-inventory">Detailed Inventory</h2>
