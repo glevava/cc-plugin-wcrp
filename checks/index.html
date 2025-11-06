@@ -651,7 +651,147 @@ These checks confirm that:
 <p>These checks ensure that the <strong>NetCDF file format</strong> and <strong>compression options</strong> comply with project and ESGF recommendations.</p>
 <h2 id="detailed-inventory">Detailed Inventory</h2>
 <p>For the full list of checks (IDs, severities), see the spreadsheet :</p>
-<p><strong>🔗<a href="https://docs.google.com/spreadsheets/d/15LytNx3qE7mvuCpyFYAsGFFKqzmm1MH_BoApoqbmLQk/edit?gid=1447223205#gid=1447223205">Checks_QC_Table</a></strong></p>
+<table>
+<thead>
+<tr>
+<th>category</th>
+<th>check</th>
+<th>check_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File</td>
+<td>Validate structure against CV pattern</td>
+<td>FILE001</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>Check the existence, type, encoding (e.g., UTF-8) and value of a global attribute</td>
+<td>ATTR001-004</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>Check the constitency with filename tokens</td>
+<td>ATTR005</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>Check the consistency with variant_label/member attribute</td>
+<td>ATTR006</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>Check the consistency with experiment_id attribute</td>
+<td>ATTR007</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>Check the consistency with table_id attribute</td>
+<td>ATTR008</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>Check the consistency with source_id attribute</td>
+<td>ATTR009</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>Check the consistency with driving_experiment attribute</td>
+<td>ATTR010</td>
+</tr>
+<tr>
+<td>Variables</td>
+<td>Check the existence of only one geophysical variable and consistency with CV Variable Registry</td>
+<td>VAR001</td>
+</tr>
+<tr>
+<td>Variables</td>
+<td>Check the existence of required coordinate variables and consistency with CV Variable Registry</td>
+<td>VAR007</td>
+</tr>
+<tr>
+<td>Variables</td>
+<td>Check the existence of required boundary variables and consistency with CV Variable Registry</td>
+<td>VAR008</td>
+</tr>
+<tr>
+<td>Variables</td>
+<td>Check the consistency of time axis coverage with time range from filename</td>
+<td>VAR009</td>
+</tr>
+<tr>
+<td>Variables</td>
+<td>Check the shape aligns with corresponding dimension</td>
+<td>VAR010</td>
+</tr>
+<tr>
+<td>Variables</td>
+<td>Check the type of the variable</td>
+<td>VAR011</td>
+</tr>
+<tr>
+<td>Variables</td>
+<td>Ensure each value lies within the range specified by corresponding boundary variable</td>
+<td>VAR012</td>
+</tr>
+<tr>
+<td>Variables</td>
+<td>Ensure values are non-decreasing/increasing monotonic and strictly positive (when applicable)</td>
+<td>VAR013-VAR014</td>
+</tr>
+<tr>
+<td>Dimensions</td>
+<td>Check the existence of required dimensions and consistency with CV Variable Registry</td>
+<td>DIM001</td>
+</tr>
+<tr>
+<td>Dimensions</td>
+<td>Check the value is a positive integer</td>
+<td>DIM002</td>
+</tr>
+<tr>
+<td>Directory</td>
+<td>Check consistency of directory structure tokens with global attributes</td>
+<td>PATH001</td>
+</tr>
+<tr>
+<td>Directory</td>
+<td>Check consistency of directory structure tokens with filename tokens</td>
+<td>PATH002</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>Check for NaN/Inf values in variable</td>
+<td>DATA001</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>FillValue/MissingValue plausibility for variable</td>
+<td>DATA002</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>Constant field detection for variable</td>
+<td>DATA003</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>Check pysically impossible outlier</td>
+<td>DATA004</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>Check spatial statistical outliers</td>
+<td>DATA005</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>Chunk size  check</td>
+<td>DATA006</td>
+</tr>
+</tbody>
+</table>
 
 
 
