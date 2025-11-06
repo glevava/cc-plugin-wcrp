@@ -321,7 +321,7 @@
         <li class="md-nav__item">
   <a href="#run-several-checks" class="md-nav__link">
     <span class="md-ellipsis">
-      Run several checks
+      🚀 Run several checks
     </span>
   </a>
   
@@ -330,7 +330,7 @@
         <li class="md-nav__item">
   <a href="#save-output-to-a-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Save output to a file
+      🚀 Save output to a file
     </span>
   </a>
   
@@ -339,16 +339,16 @@
         <li class="md-nav__item">
   <a href="#skip-include-specific-wcrp_project-checks" class="md-nav__link">
     <span class="md-ellipsis">
-      Skip / Include Specific WCRP_Project Checks
+      🚀 Skip / Include Specific WCRP_Project Checks
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#multiple-files" class="md-nav__link">
+  <a href="#run-multiple-files" class="md-nav__link">
     <span class="md-ellipsis">
-      Multiple files
+      🚀 Run Multiple files
     </span>
   </a>
   
@@ -508,7 +508,7 @@
         <li class="md-nav__item">
   <a href="#run-several-checks" class="md-nav__link">
     <span class="md-ellipsis">
-      Run several checks
+      🚀 Run several checks
     </span>
   </a>
   
@@ -517,7 +517,7 @@
         <li class="md-nav__item">
   <a href="#save-output-to-a-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Save output to a file
+      🚀 Save output to a file
     </span>
   </a>
   
@@ -526,16 +526,16 @@
         <li class="md-nav__item">
   <a href="#skip-include-specific-wcrp_project-checks" class="md-nav__link">
     <span class="md-ellipsis">
-      Skip / Include Specific WCRP_Project Checks
+      🚀 Skip / Include Specific WCRP_Project Checks
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#multiple-files" class="md-nav__link">
+  <a href="#run-multiple-files" class="md-nav__link">
     <span class="md-ellipsis">
-      Multiple files
+      🚀 Run Multiple files
     </span>
   </a>
   
@@ -574,13 +574,13 @@
 <li><strong>Output Formats</strong> : text ( default) / html / json (single input file only) / json_new (handles multiple files).</li>
 </ul>
 <p>⚠️ <strong>CF plugin</strong>: Always run the CF checks as well when running the WCRP project checks, to ensure that CF-only checks (not duplicated in WCRP projects) are also verified.</p>
-<h2 id="run-several-checks">Run several checks</h2>
+<h2 id="run-several-checks">🚀 Run several checks</h2>
 <pre><code class="language-bash">compliance-checker   -t cf:1.11 -t wcrp_cmip6:1.0 path/to/data/CMIP6/CMIP/IPSL/IPSL-CM5A2-INCA/historical/r1i1p1f1/Amon/pr/gr/v20240619/pr_Amon_IPSL-CM5A2-INCA_historical_r1i1p1f1_gr_185001-201412.nc
 </code></pre>
-<h2 id="save-output-to-a-file">Save output to a file</h2>
+<h2 id="save-output-to-a-file">🚀 Save output to a file</h2>
 <pre><code class="language-bash">compliance-checker -t wcrp_cmip6:1.0 file.nc -f text(json/html) -o qc.txt(json/html)   
 </code></pre>
-<h2 id="skip-include-specific-wcrp_project-checks">Skip / Include Specific WCRP_Project Checks</h2>
+<h2 id="skip-include-specific-wcrp_project-checks">🚀 Skip / Include Specific WCRP_Project Checks</h2>
 <ul>
 <li>Only use check names from the wcrp_project (wcrp_cmip6 for example) suite here.</li>
 </ul>
@@ -595,7 +595,7 @@ compliance-checker -t wcrp_cmip6:1.0 file.nc -i check_Drs_Vocabulary
 <p>To <strong>list all available checks</strong></p>
 <pre><code class="language-bash">compliance-checker -l 
 </code></pre>
-<h2 id="multiple-files">Multiple files</h2>
+<h2 id="run-multiple-files">🚀 Run Multiple files</h2>
 <ul>
 <li>Use shell wildcards/globs, and use <strong>json_new</strong> if you want one detailed JSON for all files:</li>
 </ul>
