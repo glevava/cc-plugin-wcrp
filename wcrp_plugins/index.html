@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-wcrp-plugins" class="md-skip">
+        <a href="#wcrp-plugins" class="md-skip">
           Skip to content
         </a>
       
@@ -530,12 +530,14 @@
   
 
 
-<h1 id="the-wcrp-plugins">The <code>WCRP</code> Plugins</h1>
+<h1 id="wcrp-plugins">WCRP Plugins</h1>
 <p>The <strong>WCRP plugins</strong> provide project-specific compliance checks for WCRP datasets such as <strong>CMIP6</strong> and <strong>CORDEX-CMIP6</strong>, built on top of the <a href="https://ioos.github.io/compliance-checker/">IOOS Compliance Checker</a>.</p>
-<p>Each plugin has its own orchestration layer (<code>wcrp_project.py</code>), which acts as the <strong>controller</strong> for WCRP validation logic — deciding:
-- Which checks to run<br />
-- With what severity<br />
-- According to each project’s configuration  </p>
+<p>Each plugin has its own orchestration layer (<code>wcrp_project.py</code>), which acts as the <strong>controller</strong> for WCRP validation logic deciding:</p>
+<ul>
+<li>Which checks to run  </li>
+<li>With what severity  </li>
+<li>According to each project’s configuration  </li>
+</ul>
 <hr />
 <h2 id="available-plugins">Available Plugins</h2>
 <table>
@@ -564,8 +566,12 @@
 <h2 id="what-each-plugin-does">What Each Plugin Does</h2>
 <p>Each WCRP plugin:</p>
 <ol>
-<li><strong>Loads its configuration file</strong> (<code>wcrp_cmip6.toml</code> or <code>wcrp_cordex_cmip6.toml</code>), which defines:</li>
-<li>Which checks to run (DRS, attributes, time, metadata, etc.)</li>
+<li>
+<p><strong>Loads its configuration file</strong> (<code>wcrp_cmip6.toml</code> or <code>wcrp_cordex_cmip6.toml</code>), which defines:</p>
+</li>
+<li>
+<p>Which checks to run (DRS, attributes, time, metadata, etc.)</p>
+</li>
 <li>
 <p>The severity of each check (High = Mandatory, Medium = Recommended, Low = Warning)</p>
 </li>
