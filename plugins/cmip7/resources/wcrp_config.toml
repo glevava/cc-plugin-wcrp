@@ -38,6 +38,7 @@ severity = "H"
 [global_attributes.Conventions]
 severity = "H"
 expected_type = "str"
+# Remove - this only relates to CMOR and not all groups use CMOR ? Or can this check handle the case where there is no CMOR information?
 
 [global_attributes.activity_id]
 severity = "H"
@@ -46,46 +47,81 @@ expected_type = "str"
 [global_attributes.archive_id]
 severity = "M"
 expected_type = "str"
+# Remove - archive ID isn't a required global attribute
 
 [global_attributes.area_label]
-severity = "M"
+severity = "H"
 expected_type = "str"
 
 [global_attributes.branch_method]
-severity = "M"
+severity = "H"
 expected_type = "str"
 
+# How do we express that the branch attributes
+# must be there if there is a parent,
+# and must not be there if there is no parent?
 [global_attributes.branch_time_in_child]
-severity = "M"
+severity = "H"
 expected_type = "float"
 
 [global_attributes.branch_time_in_parent]
-severity = "M"
+severity = "H"
 expected_type = "float"
 
+# How do we express that these can be None?
+[global_attributes.parent_activity_id]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.parent_experiment_id]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.parent_mip_era]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.parent_source_id]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.parent_time_units]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.parent_variant_label]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.branded_variable]
+severity = "H"
+expected_type = "str"
+
 [global_attributes.branding_suffix]
-severity = "M"
+severity = "H"
 expected_type = "str"
 
 [global_attributes.creation_date]
-severity = "M"
+severity = "H"
 expected_type = "str"
 
-[global_attributes.cv_version]
-severity = "M"
+[global_attributes.data_specs_version]
+severity = "H"
 expected_type = "str"
 
 [global_attributes.drs_specs]
-severity = "M"
+severity = "H"
 expected_type = "str"
 
 [global_attributes.end_year]
 severity = "M"
 expected_type = "str"
+# Remove - not a thing
 
 [global_attributes.experiment]
 severity = "M"
 expected_type = "str"
+# Remove - not a thing that CVs is checking/validating
 
 [global_attributes.experiment_id]
 severity = "H"
@@ -99,17 +135,39 @@ expected_type = "str"
 severity = "H"
 expected_type = "str"
 
+[global_attributes.frequency]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.grid_label]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.horizontal_label]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.initialization_index]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.institution_id]
+severity = "H"
+expected_type = "str"
+
 [global_attributes.region]
-severity = "M"
+severity = "H"
 expected_type = "str"
 
 [global_attributes.release_year]
 severity = "M"
 expected_type = "str"
+# Remove - not a thing that CVs is checking/validating
 
 [global_attributes.source]
 severity = "M"
 expected_type = "str"
+# Remove - not a thing that CVs is checking/validating
 
 [global_attributes.source_id]
 severity = "H"
@@ -118,26 +176,31 @@ expected_type = "str"
 [global_attributes.source_type]
 severity = "M"
 expected_type = "str"
+# Remove - not a thing that CVs is checking/validating
 
 [global_attributes.start_year]
 severity = "M"
 expected_type = "str"
+# Remove - not a thing that CVs is checking/validating
 
 [global_attributes.table_id]
 severity = "H"
 expected_type = "str"
+# Remove - not a thing that CVs is checking/validating
 
 [global_attributes.table_info]
 severity = "M"
 expected_type = "str"
+# Remove - not a thing that CVs is checking/validating
 
 [global_attributes.temporal_label]
-severity = "M"
+severity = "H"
 expected_type = "str"
 
 [global_attributes.title]
 severity = "M"
 expected_type = "str"
+# Remove - not a thing that CVs is checking/validating
 
 [global_attributes.variable_id]
 severity = "H"
@@ -148,20 +211,47 @@ severity = "H"
 expected_type = "str"
 
 [global_attributes.vertical_label]
-severity = "M"
+severity = "H"
 expected_type = "str"
 
-[global_attributes.license]
+[global_attributes.license_id]
+severity = "H"
+expected_type = "str"
+# Only validate license_id, not full license text
+
+[global_attributes.mip_era]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.nominal_resolution]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.physics_index]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.product]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.realization_index]
+severity = "H"
+expected_type = "str"
+
+[global_attributes.realm]
 severity = "H"
 expected_type = "str"
 
 [global_attributes.cmor_version]
 severity = "M"
 expected_type = "str"
+# Remove - not all groups use CMOR
 
 [global_attributes.tracking_id]
-severity = "L"
+severity = "H"
 expected_type = "str"
+# Super important to get this right
 
 # ==============================================================================
 # == Checks Variable registry
@@ -182,7 +272,7 @@ severity = "H"
 
 [data_plausibility_checks.check_fill_missing]
 enabled = true
-severity = "M"
+severity = "H"
 
 [data_plausibility_checks.check_constant]
 enabled = true
@@ -200,7 +290,8 @@ method = "Z-Score"
 
 [data_plausibility_checks.check_chunk_size]
 enabled = true
-severity = "M"
+severity = "H"
+# Or will chunking be handled by the repacking tool?
 
 
 # ==============================================================================
