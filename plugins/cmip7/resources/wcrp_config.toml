@@ -50,7 +50,7 @@ expected_type = "str"
 severity = "M"
 expected_type = "str"
 # Remove - archive ID isn't a required global attribute
-# MM: This has been in early versions of CVs files, but I think this is a duplicate of mip_era or drs_specs
+# MM: This has been in early versions of CVs files with the value "WCRP", but is not part of the global attributes doc.
 
 [global_attributes.area_label]
 severity = "H"
