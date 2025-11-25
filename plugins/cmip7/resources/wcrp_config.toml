@@ -39,6 +39,8 @@ severity = "H"
 severity = "H"
 expected_type = "str"
 # Remove - this only relates to CMOR and not all groups use CMOR ? Or can this check handle the case where there is no CMOR information?
+# MM: Conventions is one of the mandatory global attributes.
+
 
 [global_attributes.activity_id]
 severity = "H"
@@ -48,6 +50,7 @@ expected_type = "str"
 severity = "M"
 expected_type = "str"
 # Remove - archive ID isn't a required global attribute
+# MM: This has been in early versions of CVs files, but I think this is a duplicate of mip_era or drs_specs
 
 [global_attributes.area_label]
 severity = "H"
@@ -60,6 +63,8 @@ expected_type = "str"
 # How do we express that the branch attributes
 # must be there if there is a parent,
 # and must not be there if there is no parent?
+# MM: CC should be able to handle the optional checks -- they'll need to skip branch_time_* and parent_* if branch_method == "no parent"
+
 [global_attributes.branch_time_in_child]
 severity = "H"
 expected_type = "float"
@@ -117,11 +122,13 @@ expected_type = "str"
 severity = "M"
 expected_type = "str"
 # Remove - not a thing
+# MM: Remove, this might be in the CVs related to the experiment, but shouldn't be in files.
 
 [global_attributes.experiment]
 severity = "M"
 expected_type = "str"
 # Remove - not a thing that CVs is checking/validating
+# MM: this is an optional attribute, but is "strongly recommended". Should it be validated against the CV if present?
 
 [global_attributes.experiment_id]
 severity = "H"
@@ -163,11 +170,13 @@ expected_type = "str"
 severity = "M"
 expected_type = "str"
 # Remove - not a thing that CVs is checking/validating
+# MM: This has previously been part of the source string, but I agree that this doesn't need to be present in files.
 
 [global_attributes.source]
 severity = "M"
 expected_type = "str"
 # Remove - not a thing that CVs is checking/validating
+# MM: Optional, but strongly recommended. Does this need to be validated against CV if present?
 
 [global_attributes.source_id]
 severity = "H"
@@ -177,21 +186,25 @@ expected_type = "str"
 severity = "M"
 expected_type = "str"
 # Remove - not a thing that CVs is checking/validating
+# MM: source_type appears to have been retired.
 
 [global_attributes.start_year]
 severity = "M"
 expected_type = "str"
 # Remove - not a thing that CVs is checking/validating
+# MM: Remove as for end_year
 
 [global_attributes.table_id]
 severity = "H"
 expected_type = "str"
 # Remove - not a thing that CVs is checking/validating
+# MM: Remove (obsolete)
 
 [global_attributes.table_info]
 severity = "M"
 expected_type = "str"
 # Remove - not a thing that CVs is checking/validating
+# MM: Remove, CMOR may put this in
 
 [global_attributes.temporal_label]
 severity = "H"
@@ -201,6 +214,7 @@ expected_type = "str"
 severity = "M"
 expected_type = "str"
 # Remove - not a thing that CVs is checking/validating
+# MM: An optional attribute, with a very vague description in the global attributes doc. Suggest removing
 
 [global_attributes.variable_id]
 severity = "H"
@@ -256,14 +270,18 @@ expected_type = "str"
 # ==============================================================================
 # == Checks Variable registry
 # ==============================================================================
-#To activate Variable regisrty checks
+#To activate Variable registry checks
 [variable_registry_checks]
 severity = "H"
+# MM: how do we tell what these are?
+
 # ==============================================================================
 # == Data Plausibility Checks
 # ==============================================================================
 [data_plausibility_checks]
 # Project name (must match the “projects” key in your outliers_thresholds.json)
+# MM: I have some concerns about the cost of running these checks, but we will need to test.
+
 project = "CMIP"
 
 [data_plausibility_checks.check_nan_inf]
@@ -292,6 +310,7 @@ method = "Z-Score"
 enabled = true
 severity = "H"
 # Or will chunking be handled by the repacking tool?
+# MM: https://github.com/NCAS-CMS/cmip7_repack includes "check_cmip7_packing"
 
 
 # ==============================================================================
@@ -315,11 +334,14 @@ severity = "H"
 # Check frequency and table_id consistency via tha mapping below
 [freq_table_id_consistency_checks]
 severity = "H"
-
+# MM: table_id isn't an attribute in CMIP7 so I think this should be dropped
 
 # ==============================================================================
 # == Mappings for frequency/table_id Consistency Checks
 # ==============================================================================
+
+# MM: Drop all of these?
+
 [frequency_table_id_mapping]
 AERday = ["day"]
 AERhr = ["1hr"]
