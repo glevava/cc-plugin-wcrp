@@ -661,83 +661,93 @@ These checks confirm that:
 <tbody>
 <tr>
 <td>File</td>
-<td>Validate structure against CV pattern</td>
+<td>Validate filename against CV pattern</td>
 <td>FILE001</td>
 </tr>
 <tr>
-<td>Attributes</td>
-<td>Check the existence, type, encoding (e.g., UTF-8) and value of a global attribute</td>
-<td>ATTR001-004</td>
+<td>File</td>
+<td>Check file format</td>
+<td>FILE002</td>
+</tr>
+<tr>
+<td>File</td>
+<td>Check compression file settings</td>
+<td>FILE003</td>
 </tr>
 <tr>
 <td>Attributes</td>
-<td>Check the constitency with filename tokens</td>
+<td>Check the existence of an attribute</td>
+<td>ATTR001</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>Check the type on an attribute</td>
+<td>ATTR002</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>Check encoding (e.g., UTF-8) of an  attribute</td>
+<td>ATTR003</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>Check the value of a global attribute</td>
+<td>ATTR004</td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td>Check the constitency of filename tokens</td>
 <td>ATTR005</td>
 </tr>
 <tr>
 <td>Attributes</td>
-<td>Check the consistency with variant_label/member attribute</td>
+<td>Check the consistency of variant_label/member attribute</td>
 <td>ATTR006</td>
 </tr>
 <tr>
 <td>Attributes</td>
-<td>Check the consistency with experiment_id attribute</td>
+<td>Check the consistency of experiment details</td>
 <td>ATTR007</td>
 </tr>
 <tr>
 <td>Attributes</td>
-<td>Check the consistency with table_id attribute</td>
+<td>Check the consistency  of table_id attribute</td>
 <td>ATTR008</td>
 </tr>
 <tr>
 <td>Attributes</td>
-<td>Check the consistency with source_id attribute</td>
+<td>Check the consistency of  institution  details</td>
 <td>ATTR009</td>
 </tr>
 <tr>
 <td>Attributes</td>
-<td>Check the consistency with driving_experiment attribute</td>
+<td>Check the consistency of source  details</td>
 <td>ATTR010</td>
 </tr>
 <tr>
 <td>Variables</td>
-<td>Check the existence of only one geophysical variable and consistency with CV Variable Registry</td>
+<td>Check the existence of variable</td>
 <td>VAR001</td>
 </tr>
 <tr>
 <td>Variables</td>
-<td>Check the existence of required coordinate variables and consistency with CV Variable Registry</td>
-<td>VAR007</td>
-</tr>
-<tr>
-<td>Variables</td>
-<td>Check the existence of required boundary variables and consistency with CV Variable Registry</td>
-<td>VAR008</td>
+<td>Check the shape aligns with corresponding dimension</td>
+<td>VAR002</td>
 </tr>
 <tr>
 <td>Variables</td>
 <td>Check the consistency of time axis coverage with time range from filename</td>
-<td>VAR009</td>
-</tr>
-<tr>
-<td>Variables</td>
-<td>Check the shape aligns with corresponding dimension</td>
-<td>VAR010</td>
-</tr>
-<tr>
-<td>Variables</td>
-<td>Check the type of the variable</td>
-<td>VAR011</td>
+<td>VAR003</td>
 </tr>
 <tr>
 <td>Variables</td>
 <td>Ensure each value lies within the range specified by corresponding boundary variable</td>
-<td>VAR012</td>
+<td>VAR004</td>
 </tr>
 <tr>
 <td>Variables</td>
-<td>Ensure values are non-decreasing/increasing monotonic and strictly positive (when applicable)</td>
-<td>VAR013-VAR014</td>
+<td>Check the type of the variable</td>
+<td>VAR005</td>
 </tr>
 <tr>
 <td>Dimensions</td>
@@ -750,6 +760,11 @@ These checks confirm that:
 <td>DIM002</td>
 </tr>
 <tr>
+<td>Dimensions</td>
+<td>Check dimension size</td>
+<td>DIM003</td>
+</tr>
+<tr>
 <td>Directory</td>
 <td>Check consistency of directory structure tokens with global attributes</td>
 <td>PATH001</td>
@@ -757,6 +772,11 @@ These checks confirm that:
 <tr>
 <td>Directory</td>
 <td>Check consistency of directory structure tokens with filename tokens</td>
+<td>PATH002</td>
+</tr>
+<tr>
+<td>Directory</td>
+<td>Validate directory structure tokens against CV Pattern</td>
 <td>PATH002</td>
 </tr>
 <tr>
