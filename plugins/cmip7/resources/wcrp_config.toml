@@ -1,6 +1,7 @@
 # ==============================================================================
 # CMIP7 Configuration FILE
 # ==============================================================================
+# To be Consistent with https://zenodo.org/records/17250297
 project_name = "cmip7"
 project_version = "1.0"
 
@@ -41,7 +42,7 @@ expected_shuffle = true
 severity = "H"
 value_type = "str"
 is_required = true
-cv_source_collection = "archive"
+cv_source_collection = "activity"
 
 [global_attributes.area_label]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
@@ -86,7 +87,7 @@ constraint = ".*"
 [global_attributes.conventions]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
 attribute_name = "Conventions"
-severity = "M"
+severity = "H"
 value_type = "str"
 is_required = true
 cv_source_collection = "conventions"
@@ -114,7 +115,8 @@ cv_source_collection = "drs_specs"
 
 [global_attributes.experiment]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
-severity = "L"
+# GL: We can switch the CV constraint to free-text or other easily if preferred.
+severity = "M"
 value_type = "str"
 is_required = false
 cv_source_collection = "experiment"
@@ -129,7 +131,7 @@ cv_source_collection = "experiment"
 
 [global_attributes.external_variables]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
-severity = "L"
+severity = "H"
 value_type = "str"
 is_required = false
 cv_source_collection = "archive"
@@ -171,7 +173,7 @@ cv_source_collection = "initialization_index"
 
 [global_attributes.institution]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
-severity = "L"
+severity = "M"
 value_type = "str"
 is_required = false
 cv_source_collection = "institution"
@@ -299,6 +301,7 @@ cv_source_collection = "region"
 
 [global_attributes.source]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
+# GL: We can switch the CV constraint to free-text or other easily if preferred.
 severity = "L"
 value_type = "str"
 is_required = false
@@ -364,10 +367,6 @@ cv_source_collection = "vertical_label"
 # ==============================================================================
 # == Geophysical variable metadata & coordinates checks
 # ==============================================================================
-
-[variable.registry_checks]
-# Load variable context from the Variable Regisrty
-severity = "H"
 
 [variable.existence]
 # Checks VAR001      
