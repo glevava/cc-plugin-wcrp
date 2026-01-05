@@ -559,13 +559,23 @@
 <td><code>wcrp_cordex_cmip6:1.0</code></td>
 <td>Validation of CORDEX-CMIP6 NetCDF files</td>
 </tr>
+<tr>
+<td><strong>wcrp_cmip7</strong></td>
+<td><code>wcrp_cmip7:1.0</code></td>
+<td>Validation of CMIP7 NetCDF files</td>
+</tr>
+<tr>
+<td><strong>wcrp_data</strong></td>
+<td><code>wcrp_data:1.0</code></td>
+<td>Data Validation of CMIP6/CMIP7 NetCDF files</td>
+</tr>
 </tbody>
 </table>
 <p>Each plugin has its own <strong>TOML configuration file</strong> defining specific rules, severities, and variable mappings.</p>
 <hr />
 <h2 id="what-each-plugin-does">What Each Plugin Does</h2>
 <p>Each WCRP plugin:</p>
-<p><strong>Loads its configuration file</strong> (<code>wcrp_cmip6.toml</code> or <code>wcrp_cordex_cmip6.toml</code>), which defines:</p>
+<p><strong>Loads its configuration file</strong> (<code>wcrp_cmip6.toml</code> / <code>wcrp_cordex_cmip6.toml</code> / <code>wcrp_cmip6.toml</code>/ <code>wcrp_data.toml</code>), which defines:</p>
 <ul>
 <li>Which checks to run (DRS, attributes, time, metadata, etc.)</li>
 <li>The severity of each check (High = Mandatory, Medium = Recommended, Low = Warning)</li>
@@ -581,18 +591,22 @@
 <p>Each plugin is driven by its own TOML file:</p>
 <ul>
 <li>
-<p><strong><code>wcrp_cmip6.toml</code></strong><br />
-  Main configuration for CMIP6 checks, mapping variables, severities, and project rules.</p>
+<p><strong><code>wcrp_cmip6.toml</code></strong>  / <strong><code>wcrp_cmip7.toml</code></strong> 
+  Main configuration for CMIP6/CMIP7 checks, mapping variables, severities, and project rules.</p>
 </li>
 <li>
 <p><strong><code>wcrp_cordex_cmip6.toml</code></strong><br />
   Adapted version for CORDEX-CMIP6)context.</p>
 </li>
 <li>
+<p><strong><code>wcrp_data.toml</code></strong><br />
+  Adapted version for Data checks.  </p>
+</li>
+<li>
 <p><strong><code>mapping_variables.toml</code></strong><br />
   Helper file mapping <code>&lt;table_id&gt;.&lt;variable_id&gt;</code> to standard variable definitions<br />
   (dimensions, expected attributes, cell methods, etc.).<br />
-  This is a <strong>temporary bridge</strong> until the official ESGVOC vocabulary exposes all required metadata.</p>
+  This is a <strong>temporary bridge</strong> for CMIP6 until the official ESGVOC vocabulary exposes all required metadata.</p>
 </li>
 </ul>
 <hr />
