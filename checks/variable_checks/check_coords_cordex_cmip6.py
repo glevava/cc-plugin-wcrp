@@ -35,13 +35,13 @@ def check_lon_value_range(CheckerObject, severity=BaseCheck.MEDIUM):
         return [testctx.to_result()]
 
     # Get domain_id from global attributes
-    domain_id = CheckerObject._get_attr("domain_id", default=False)
+    domain_id = CheckerObject._get_attr("domain_id", default="")
 
     # Check if longitude coordinates are strictly monotonically increasing
     if lon.ndim != 2:
         testctx.add_failure("The longitude coordinate should have two dimensions.")
     elif domain_id.startswith('ARC') or domain_id.startswith('ANT'):
-        # The polar domains are exempt from monotony tests
+        # The polar domains are exempt from monotony tests because they cross both the meridian and anti-meridian
         testctx.add_pass()
     else:
         increasing_0 = ((lon[1:, :].data - lon[:-1, :].data) > 0).all()
