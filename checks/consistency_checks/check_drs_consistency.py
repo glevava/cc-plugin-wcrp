@@ -1,149 +1,214 @@
 #!/usr/bin/env python
 
-
+import os
 from compliance_checker.base import TestCtx
 
 from checks.utils import _get_drs_facets
 
-# Default directory and filename templates as defined for CMIP6
-_dir_template_keys = [
-    "mip_era",
-    "activity_id",
-    "institution_id",
-    "source_id",
-    "experiment_id",
-    "variant_label",
-    "table_id",
-    "variable_id",
-    "grid_label",
-    "version",
+def _unwrap_facets(x):
+    """
+    Some implementations of checks.utils._get_drs_facets return tuples like:
+      (facets_dict, extra)
+
+    """
+    if isinstance(x, tuple) and len(x) > 0 and isinstance(x[0], dict):
+        return x[0]
+    return x
+
+_dir_template_keys_cmip6 = [
+    "mip_era", "activity_id", "institution_id", "source_id", "experiment_id",
+    "variant_label", "table_id", "variable_id", "grid_label", "version",
 ]
-_filename_template_keys = [
-    "variable_id",
-    "table_id",
-    "source_id",
-    "experiment_id",
-    "variant_label",
-    "grid_label",
-    "time_range",
+_filename_template_keys_cmip6 = [
+    "variable_id", "table_id", "source_id", "experiment_id",
+    "variant_label", "grid_label", "time_range",
+]
+
+# CMIP7 directoryStructureDD (CMIP7 doc v1.0)
+_dir_template_keys_cmip7 = [
+    "drs_specs", "mip_era", "activity_id", "institution_id", "source_id",
+    "experiment_id", "variant_label", "region", "frequency", "variable_id",
+    "branding_suffix", "grid_label", "directory_date",
+]
+# CMIP7 fileNameDD
+_filename_template_keys_cmip7 = [
+    "variable_id", "branding_suffix", "frequency", "region", "grid_label",
+    "source_id", "experiment_id", "variant_label", "time_range",
 ]
 
 
-# ==============================================================================
-# == CHECK 1 : Check if DRS match Global Attributes
-# ==============================================================================
+def _is_cmip7(ds, project_id: str) -> bool:
+    try:
+        if str(ds.getncattr("mip_era")).upper() == "CMIP7":
+            return True
+    except Exception:
+        pass
+    return isinstance(project_id, str) and project_id.lower() == "cmip7"
+
+
+def _parse_directory_from_drs_specs(filepath: str, drs_specs: str, template_keys: list[str]):
+    parts = os.path.normpath(filepath).split(os.sep)
+    if not drs_specs or drs_specs not in parts:
+        return {}, f"Directory path does not contain drs_specs '{drs_specs}'."
+    i = parts.index(drs_specs)
+    terms = parts[i:-1]  # from drs_specs to parent directory
+    if len(terms) != len(template_keys):
+        return {}, (
+            f"Directory path does not match expected DRS depth. "
+            f"Found {len(terms)}, expected {len(template_keys)}."
+        )
+    return dict(zip(template_keys, terms)), None
+
+
+def _parse_cmip7_filename(filename: str):
+    stem = filename[:-3] if filename.endswith(".nc") else filename
+    parts = stem.split("_")
+    if len(parts) not in (8, 9):
+        return {}, "Filename does not match expected CMIP7 token count (8 or 9 with time_range)."
+    facets = {
+        "variable_id": parts[0],
+        "branding_suffix": parts[1],
+        "frequency": parts[2],
+        "region": parts[3],
+        "grid_label": parts[4],
+        "source_id": parts[5],
+        "experiment_id": parts[6],
+        "variant_label": parts[7],
+        "time_range": parts[8] if len(parts) == 9 else None,
+    }
+    return facets, None
+
+
 def check_attributes_match_directory_structure(
-    ds,
-    severity,
-    project_id="cmip6",
-    dir_template_keys=None,
-    filename_template_keys=None,
+    ds, severity, project_id="cmip6", dir_template_keys=None, filename_template_keys=None
 ):
-    """
-    [PATH001] Checks if global attributes match the DRS directory structure.
-    """
     fixed_check_id = "PATH001"
-    description = (
-        f"[{fixed_check_id}] Consistency: Directory Structure vs Global Attributes"
-    )
+    description = f"[{fixed_check_id}] Consistency: Directory Structure vs Global Attributes"
     ctx = TestCtx(severity, description)
-
-    # If not specified, use default/CMIP6 templates
-    if not dir_template_keys:
-        dir_template_keys = _dir_template_keys
-    if not filename_template_keys:
-        filename_template_keys = _filename_template_keys
 
     filepath = ds.filepath()
     if not isinstance(filepath, str):
         ctx.add_failure("File path could not be determined.")
         return [ctx.to_result()]
 
-    dir_facets, _, error = _get_drs_facets(
-        filepath, project_id, dir_template_keys, filename_template_keys
-    )
+    if _is_cmip7(ds, project_id):
+        # drs_specs is required to anchor the DRS in the filesystem
+        try:
+            drs_specs = str(ds.getncattr("drs_specs"))
+        except Exception:
+            ctx.add_failure("Could not perform check. Reason: missing global attribute 'drs_specs'.")
+            return [ctx.to_result()]
 
-    if error:
-        ctx.add_failure(f"Could not perform check. Reason: {error}")
-        return [ctx.to_result()]
+        dir_facets, error = _parse_directory_from_drs_specs(filepath, drs_specs, _dir_template_keys_cmip7)
+        if error:
+            ctx.add_failure(f"Could not perform check. Reason: {error}")
+            return [ctx.to_result()]
+
+        skip_keys = {"directory_date"}
+    else:
+        if not dir_template_keys:
+            dir_template_keys = _dir_template_keys_cmip6
+        if not filename_template_keys:
+            filename_template_keys = _filename_template_keys_cmip6
+
+        dir_facets, _, error = _get_drs_facets(filepath, project_id, dir_template_keys, filename_template_keys)
+        dir_facets = _unwrap_facets(dir_facets)
+        if error:
+            ctx.add_failure(f"Could not perform check. Reason: {error}")
+            return [ctx.to_result()]
+
+        skip_keys = {"version"}
 
     failures = []
-    for drs_key, drs_value in dir_facets.items():
-        if drs_key == "version":
+    for key, drs_value in dir_facets.items():
+        if key in skip_keys:
             continue
-        if drs_key in ds.ncattrs():
-            attr_value = str(ds.getncattr(drs_key))
-            if drs_value != attr_value:
+
+        if key in ds.ncattrs():
+            attr_value = str(ds.getncattr(key))
+            if str(drs_value) != attr_value:
                 failures.append(
-                    f"DRS path component '{drs_key}' ('{drs_value}') does not match global attribute ('{attr_value}')."
+                    f"DRS path component '{key}' ('{drs_value}') does not match global attribute ('{attr_value}')."
                 )
         else:
-            ctx.messages.append(
-                f"Global attribute '{drs_key}' not found, skipping comparison."
-            )
+            ctx.messages.append(f"Global attribute '{key}' not found, skipping comparison.")
 
     for f in failures:
         ctx.add_failure(f)
-
     if not failures:
         ctx.add_pass()
 
     return [ctx.to_result()]
 
 
-# ==============================================================================
-# == CHECK 2 : Check if Filename match DRS
-# ==============================================================================
 def check_filename_matches_directory_structure(
-    ds,
-    severity,
-    project_id="cmip6",
-    dir_template_keys=None,
-    filename_template_keys=None,
+    ds, severity, project_id="cmip6", dir_template_keys=None, filename_template_keys=None
 ):
-    """
-    [PATH002] Checks if filename tokens match the DRS directory structure tokens.
-    """
     fixed_check_id = "PATH002"
     description = f"[{fixed_check_id}] Consistency: Directory Structure vs Filename"
     ctx = TestCtx(severity, description)
-
-    # If not specified, use default/CMIP6 templates
-    if not dir_template_keys:
-        dir_template_keys = _dir_template_keys
-    if not filename_template_keys:
-        filename_template_keys = _filename_template_keys
 
     filepath = ds.filepath()
     if not isinstance(filepath, str):
         ctx.add_failure("File path could not be determined.")
         return [ctx.to_result()]
 
-    dir_facets, filename_facets, error = _get_drs_facets(
-        filepath, project_id, dir_template_keys, filename_template_keys
-    )
+    if _is_cmip7(ds, project_id):
+        try:
+            drs_specs = str(ds.getncattr("drs_specs"))
+        except Exception:
+            ctx.add_failure("Could not perform check. Reason: missing global attribute 'drs_specs'.")
+            return [ctx.to_result()]
 
+        dir_facets, error = _parse_directory_from_drs_specs(filepath, drs_specs, _dir_template_keys_cmip7)
+        if error:
+            ctx.add_failure(f"Could not perform check. Reason: {error}")
+            return [ctx.to_result()]
+
+        filename = os.path.basename(filepath)
+        file_facets, ferr = _parse_cmip7_filename(filename)
+        if ferr:
+            ctx.add_failure(f"Could not perform check. Reason: {ferr}")
+            return [ctx.to_result()]
+
+        # Compare shared facets between directory and filename (exclude time_range)
+        failures = []
+        for key in ("variable_id", "branding_suffix", "frequency", "region", "grid_label", "source_id", "experiment_id", "variant_label"):
+            if str(dir_facets.get(key)) != str(file_facets.get(key)):
+                failures.append(
+                    f"Token '{key}' is inconsistent: path has '{dir_facets.get(key)}', filename has '{file_facets.get(key)}'."
+                )
+
+        for f in failures:
+            ctx.add_failure(f)
+        if not failures:
+            ctx.add_pass()
+        return [ctx.to_result()]
+
+    # CMIP6 fallback
+    if not dir_template_keys:
+        dir_template_keys = _dir_template_keys_cmip6
+    if not filename_template_keys:
+        filename_template_keys = _filename_template_keys_cmip6
+
+    dir_facets, filename_facets, error = _get_drs_facets(filepath, project_id, dir_template_keys, filename_template_keys)
+    dir_facets = _unwrap_facets(dir_facets)
+    filename_facets = _unwrap_facets(filename_facets)
     if error:
         ctx.add_failure(f"Could not perform check. Reason: {error}")
         return [ctx.to_result()]
 
-    keys_to_compare = [
-        key for key in dir_template_keys if key in filename_template_keys
-    ]
+    keys_to_compare = [k for k in dir_template_keys if k in filename_template_keys]
 
     failures = []
     for key in keys_to_compare:
-        path_val = dir_facets.get(key)
-        filename_val = filename_facets.get(key)
-
-        if path_val != filename_val:
+        if dir_facets.get(key) != filename_facets.get(key):
             failures.append(
-                f"Token '{key}' is inconsistent: path has '{path_val}', filename has '{filename_val}'."
+                f"Token '{key}' is inconsistent: path has '{dir_facets.get(key)}', filename has '{filename_facets.get(key)}'."
             )
 
     for f in failures:
         ctx.add_failure(f)
-
     if not failures:
         ctx.add_pass()
 

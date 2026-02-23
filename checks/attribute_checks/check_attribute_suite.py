@@ -1,127 +1,175 @@
 #!/usr/bin/env python
+from __future__ import annotations
 
-
-from compliance_checker.base import BaseCheck, Result, TestCtx
+import re
+from typing import Any, Iterable, Optional
 
 import numpy as np
-from esgvoc import api as voc
-import re
+from compliance_checker.base import TestCtx
+
+# ESGVOC
+try:
+    from esgvoc import api as voc  # type: ignore
+
+    _ESGVOC_AVAILABLE = True
+except Exception:
+    voc = None
+    _ESGVOC_AVAILABLE = False
+
+
+# -----------------------------------------------------------------------------
+# Helpers
+# -----------------------------------------------------------------------------
+
+
+def _to_list(value: Any) -> list[str]:
+    """Convert attribute value to list of tokens."""
+    if value is None:
+        return []
+    if isinstance(value, (list, tuple, set)):
+        return [str(v).strip() for v in value if str(v).strip()]
+    return [t for t in str(value).split() if t.strip()]
+
+
+def _to_float(value: Any) -> Optional[float]:
+    """Try converting to float (supports numpy scalar types)."""
+    try:
+        if hasattr(value, "item"):
+            value = value.item()
+        return float(value)
+    except Exception:
+        return None
+
+
+def _ci_attr_name_lookup(obj, attribute_name: str) -> str:
+    """Case-insensitive lookup of NetCDF attribute name."""
+    try:
+        nc_attrs = obj.ncattrs()
+    except Exception:
+        return attribute_name
+    matches = [a for a in nc_attrs if a.lower() == attribute_name.lower()]
+    return matches[0] if matches else attribute_name
+
+
+# -----------------------------------------------------------------------------
+# MAIN
+# -----------------------------------------------------------------------------
 
 
 def check_attribute_suite(
     ds,
-    attribute_name,
-    severity,
-    value_type=None,
-    is_required=True,
-    cv_collection=None,
-    cv_collection_key=None,
-    constraint=None,
-    var_name=None,
-    project_name=None,
-    attribute_nc_name=None,
+    attribute_name: str,
+    severity: int,
+    value_type: Optional[str] = None,
+    is_required: bool = True,
+    pattern: Optional[str] = None,
+    constant: Any = None,
+    enum: Optional[Iterable[Any]] = None,
+    as_variable: Optional[bool] = None,
+    is_positive: Optional[bool] = None,
+    # ESGVOC vocab rule (key is OPTIONAL param of the same rule)
+    cv_source_collection: Optional[str] = None,
+    cv_source_collection_key: Optional[str] = None,
+    project_name: Optional[str] = None,
+    # Registry expected-term rule (exclusive with everything else in ATTR004)
+    cv_source_term_key: Optional[str] = None,
+    expected_term: Any = None,
+    # Location
+    var_name: Optional[str] = None,
+    attribute_nc_name: Optional[str] = None,
+    # Optional label prefix for nicer report grouping
+    context: Optional[str] = None,
 ):
     """
-    Generic attribute validation suite.
+    Attribute suite checks.
 
-    ATTR001 — Existence
-    ATTR002 — Type
-    ATTR003 — UTF-8 Encoding
-    ATTR004 — Value validation (Regex or ESGVOC)
+    ATTR004 rule selection (STRICT):
+      Exactly ONE of the following rules can be active:
+        - pattern
+        - constant
+        - enum
+        - as_variable
+        - is_positive
+        - vocabulary: cv_source_collection (+ optional cv_source_collection_key)
+        - registry expected-term: cv_source_term_key (+ expected_term)
+
+      The ONLY allowed combination is:
+        cv_source_collection + cv_source_collection_key
     """
-    if var_name:
-        nc_attrs = ds.variables[var_name].ncattrs() if var_name in ds.variables else []
-    else:
-        nc_attrs = ds.ncattrs()
-
-    if attribute_nc_name:
-        nc_key = attribute_nc_name
-    else:
-        matches = [a for a in nc_attrs if a.lower() == attribute_name.lower()]
-        nc_key = matches[0] if matches else attribute_name
-
-    # Label builder
-    def label(code, desc):
-        prefix = f"[{code}]"
-        if var_name:
-            return (
-                f"{prefix} {var_name} | {desc}: Variable Attribute '{attribute_name}'"
-            )
-        else:
-            return f"{prefix} {desc}: Global Attribute '{attribute_name}'"
 
     results = []
-    attr_value = None
 
-    # =========================================================
-    # ATTR001 — EXISTENCE
-    # =========================================================
-    existence_ctx = TestCtx(severity, label("ATTR001", "Existence"))
+    # -------------------------------------------------------------------------
+    # Resolve attribute source (global vs variable)
+    # -------------------------------------------------------------------------
+    if var_name:
+        if var_name not in ds.variables:
+            return []
+        obj = ds.variables[var_name]
+        where = f"Variable '{var_name}' attribute"
+    else:
+        obj = ds
+        where = "Global attribute"
+
+    # Resolve actual netCDF attribute key (case-insensitive)
+    nc_key = attribute_nc_name or _ci_attr_name_lookup(obj, attribute_name)
+
+    prefix = f"{context} " if context else ""
+    label = f"{prefix}{where} '{attribute_name}'"
+
+    # -------------------------------------------------------------------------
+    # ATTR001 - Existence
+    # -------------------------------------------------------------------------
+    existence_ctx = TestCtx(severity, f"[ATTR001] {label} existence")
     try:
-        if var_name:
-            if var_name not in ds.variables:
-                existence_ctx.add_failure(
-                    f"Cannot check attribute '{attribute_name}' because variable '{var_name}' does not exist."
-                )
-                results.append(existence_ctx.to_result())
-                return results
-
-            attr_value = ds.variables[var_name].getncattr(nc_key)
-        else:
-            attr_value = ds.getncattr(nc_key)
-
+        attr_value = obj.getncattr(nc_key)
         existence_ctx.add_pass()
         results.append(existence_ctx.to_result())
-
     except AttributeError:
         if is_required:
             existence_ctx.add_failure(
-                f"Required attribute '{attribute_name}' (NetCDF key '{nc_key}') is missing."
+                f"Required {where.lower()} '{attribute_name}' is missing."
             )
             results.append(existence_ctx.to_result())
+        return results  # stop here if missing
 
-        return results
-
-    if attr_value is None:
-        return results
-
-    # =========================================================
-    # ATTR002 — TYPE CHECK
-    # =========================================================
+    # -------------------------------------------------------------------------
+    # ATTR002 - Type check
+    # -------------------------------------------------------------------------
     if value_type:
-        type_ctx = TestCtx(severity, label("ATTR002", "Type"))
+        type_ctx = TestCtx(severity, f"[ATTR002] {label} type")
+
+        vt = str(value_type).lower()
+        if vt in ("double", "real"):
+            vt = "float"
 
         type_map = {
             "str": str,
             "int": (int, np.integer),
             "float": (float, np.floating),
-            "str_array": list,  # <--- NEW
+            "bool": (bool, np.bool_),
+            "str_array": list,
         }
+        expected = type_map.get(vt)
 
-        expected_py_type = type_map.get(str(value_type).lower())
-
-        # Convert raw NetCDF value into correct runtime type for "str_array"
-        if value_type == "str_array":
-            attr_value_for_type = str(attr_value).strip().split()
+        if expected is None:
+            type_ctx.add_failure(f"Unsupported value_type '{value_type}'.")
         else:
-            attr_value_for_type = attr_value
-
-        if expected_py_type is None:
-            type_ctx.add_failure(f"Invalid value_type '{value_type}'.")
-        elif isinstance(attr_value_for_type, expected_py_type):
-            type_ctx.add_pass()
-        else:
-            type_ctx.add_failure(
-                f"Type mismatch: got {type(attr_value).__name__}, expected {expected_py_type}."
-            )
+            val_for_type = _to_list(attr_value) if vt == "str_array" else attr_value
+            if isinstance(val_for_type, expected):
+                type_ctx.add_pass()
+            else:
+                type_ctx.add_failure(
+                    f"Type mismatch: expected {expected}, got {type(attr_value)}"
+                )
 
         results.append(type_ctx.to_result())
 
-    # =========================================================
-    # ATTR003 — UTF-8 ENCODING
-    # =========================================================
+    # -------------------------------------------------------------------------
+    # ATTR003 - UTF-8 check
+    # -------------------------------------------------------------------------
     if isinstance(attr_value, str):
-        utf8_ctx = TestCtx(severity, label("ATTR003", "UTF-8 Encoding"))
+        utf8_ctx = TestCtx(severity, f"[ATTR003] {label} UTF-8 encoding")
         try:
             attr_value.encode("utf-8")
             utf8_ctx.add_pass()
@@ -129,72 +177,175 @@ def check_attribute_suite(
             utf8_ctx.add_failure("Non UTF-8 characters detected.")
         results.append(utf8_ctx.to_result())
 
-    # =========================================================
-    # ATTR004 — Value Validation
-    # =========================================================
+    # -------------------------------------------------------------------------
+    # ATTR004 - ONE exclusive rule (except vocab key parameter)
+    # -------------------------------------------------------------------------
 
-    # ---------- CASE A: REGEX ----------
-    if constraint is not None:
-        pattern_ctx = TestCtx(severity, label("ATTR004", "Regex Match Check"))
-        try:
-            if re.fullmatch(constraint, str(attr_value)):
-                pattern_ctx.add_pass()
-            else:
-                pattern_ctx.add_failure(
-                    f"Value '{attr_value}' does not match regex '{constraint}'."
-                )
-        except re.error:
-            pattern_ctx.add_failure(f"Invalid regex expression '{constraint}'.")
-        results.append(pattern_ctx.to_result())
+    vocab_rule_active = cv_source_collection is not None
+    registry_rule_active = cv_source_term_key is not None
+
+    rule_flags = [
+        pattern is not None,
+        constant is not None,
+        enum is not None,
+        bool(as_variable),
+        bool(is_positive),
+        vocab_rule_active,
+        registry_rule_active,
+    ]
+
+    # If collection_key is provided without collection => config error
+    if cv_source_collection_key and not cv_source_collection:
+        cfg_ctx = TestCtx(severity, f"[ATTR004] {label} rule configuration")
+        cfg_ctx.add_failure(
+            "cv_source_collection_key provided without cv_source_collection."
+        )
+        results.append(cfg_ctx.to_result())
         return results
 
-    # ---------- CASE B: ESGVOC ----------
-    if cv_collection:
-        vocab_ctx = TestCtx(severity, label("ATTR004", "ESGVOC Vocabulary Check"))
-        if value_type == "str_array":
-            values = str(attr_value).strip().split()
-        else:
-            values = [attr_value]
+    # Enforce strict exclusivity: only ONE rule among the 7 flags above
+    if sum(rule_flags) > 1:
+        cfg_ctx = TestCtx(severity, f"[ATTR004] {label} rule configuration")
+        cfg_ctx.add_failure(
+            "Multiple mutually exclusive ATTR004 rules defined. "
+            "Allowed: exactly one of (pattern|constant|enum|as_variable|is_positive|cv_source_collection|cv_source_term_key). "
+            "Note: cv_source_collection_key is only a parameter of cv_source_collection."
+        )
+        results.append(cfg_ctx.to_result())
+        return results
 
-        invalid = []
+    # ---------------- PATTERN ----------------
+    if pattern is not None:
+        ctx = TestCtx(severity, f"[ATTR004] {label} pattern check")
+        try:
+            if re.fullmatch(str(pattern), str(attr_value)):
+                ctx.add_pass()
+            else:
+                ctx.add_failure(
+                    f"Value '{attr_value}' does not match pattern '{pattern}'."
+                )
+        except re.error:
+            ctx.add_failure(f"Invalid regex '{pattern}'.")
+        results.append(ctx.to_result())
+        return results
+
+    # ---------------- CONSTANT ----------------
+    if constant is not None:
+        ctx = TestCtx(severity, f"[ATTR004] {label} constant check")
+        if str(attr_value).strip() == str(constant).strip():
+            ctx.add_pass()
+        else:
+            ctx.add_failure(f"Expected '{constant}', got '{attr_value}'.")
+        results.append(ctx.to_result())
+        return results
+
+    # ---------------- ENUM ----------------
+    if enum is not None:
+        ctx = TestCtx(severity, f"[ATTR004] {label} enum check")
+        allowed = [str(x) for x in enum]
+        if str(attr_value) in allowed:
+            ctx.add_pass()
+        else:
+            ctx.add_failure(f"Value '{attr_value}' not in allowed values {allowed}.")
+        results.append(ctx.to_result())
+        return results
+
+    # ---------------- AS VARIABLE ----------------
+    if as_variable:
+        ctx = TestCtx(severity, f"[ATTR004] {label} as-variable check")
+        tokens = _to_list(attr_value)
+        missing = [t for t in tokens if t not in ds.variables]
+        if missing:
+            ctx.add_failure(f"Referenced variables not found: {missing}")
+        else:
+            ctx.add_pass()
+        results.append(ctx.to_result())
+        return results
+
+    # ---------------- IS POSITIVE ----------------
+    if is_positive:
+        ctx = TestCtx(severity, f"[ATTR004] {label} positive check")
+        val = _to_float(attr_value)
+        if val is None:
+            ctx.add_failure(f"Value '{attr_value}' is not numeric.")
+        elif val > 0:
+            ctx.add_pass()
+        else:
+            ctx.add_failure(f"Expected positive value (>0), got {val}.")
+        results.append(ctx.to_result())
+        return results
+
+    # ---------------- REGISTRY expected-term ----------------
+    if registry_rule_active:
+        ctx = TestCtx(severity, f"[ATTR004] {label} registry expected-term check")
+        if expected_term is None:
+            ctx.add_failure(
+                "Registry rule enabled but expected_term is None (registry not resolved)."
+            )
+        else:
+            expected_val = getattr(expected_term, str(cv_source_term_key), None)
+            if expected_val is None or str(expected_val).strip() == "":
+                ctx.add_failure(
+                    f"Registry has no value for key '{cv_source_term_key}'."
+                )
+            elif str(attr_value).strip() == str(expected_val).strip():
+                ctx.add_pass()
+            else:
+                ctx.add_failure(
+                    f"Expected '{expected_val}' from registry key '{cv_source_term_key}', got '{attr_value}'."
+                )
+        results.append(ctx.to_result())
+        return results
+
+    # ---------------- ESGVOC vocabulary ----------------
+    if vocab_rule_active:
+        ctx = TestCtx(severity, f"[ATTR004] {label} vocabulary check")
+
+        if not _ESGVOC_AVAILABLE:
+            ctx.add_failure("ESGVOC library not available.")
+            results.append(ctx.to_result())
+            return results
+
+        values = _to_list(attr_value) if value_type == "str_array" else [attr_value]
+        invalid: list[Any] = []
 
         try:
-            for val in values:
-                if cv_collection_key:
-                    term = voc.get_term_in_collection(
-                        project_id=project_name,
-                        collection_id=cv_collection,
-                        term_id=cv_collection_key,
+            # If a key is provided, do the direct get_term_in_collection (as requested).
+            # This checks that the collection contains that term_id key.
+            if cv_source_collection_key:
+                term = voc.get_term_in_collection(
+                    project_id=project_name,
+                    collection_id=cv_source_collection,
+                    term_id=cv_source_collection_key,
+                )
+                if not term:
+                    ctx.add_failure(
+                        f"CV collection '{cv_source_collection}' has no term key '{cv_source_collection_key}'."
                     )
+                    results.append(ctx.to_result())
+                    return results
 
-                    if not term:
-                        vocab_ctx.add_failure(
-                            f"Term '{cv_collection_key}' not found in collection '{cv_collection}'."
-                        )
-                        results.append(vocab_ctx.to_result())
-                        return results
-
-                    expected_val = str(term.value).strip()
-
-                    if str(val).strip() != expected_val:
-                        invalid.append(val)
-
-                else:
-                    if not voc.valid_term_in_collection(
-                        value=val, project_id=project_name, collection_id=cv_collection
-                    ):
-                        invalid.append(val)
+            # Then validate the actual attribute value against the collection
+            for val in values:
+                if not voc.valid_term_in_collection(
+                    value=val,
+                    project_id=project_name,
+                    collection_id=cv_source_collection,
+                ):
+                    invalid.append(val)
 
             if invalid:
-                vocab_ctx.add_failure(
-                    f"Invalid values {invalid} for CV '{cv_collection}'."
+                ctx.add_failure(
+                    f"Invalid value(s) {invalid} for CV collection '{cv_source_collection}'."
                 )
             else:
-                vocab_ctx.add_pass()
+                ctx.add_pass()
 
         except Exception as e:
-            vocab_ctx.add_failure(f"Vocabulary lookup error: {e}")
+            ctx.add_failure(f"Vocabulary lookup error: {e}")
 
-        results.append(vocab_ctx.to_result())
+        results.append(ctx.to_result())
+        return results
 
+    # If no ATTR004 rule configured, we simply return existence/type/utf8 results.
     return results

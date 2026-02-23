@@ -1,0 +1,35 @@
+==== Test Report ====
+Test: check_spatial_statistical_outliers_min_series
+File: /home/anachite/Bureau/Datatest/DATA_QC/C3S-CMIP6/grr/pr_day_NorCPM1_historical_r1i1p1f1_gn_19500101-20141231.nc
+Variable: pr
+Dataset Name: /home/anachite/Bureau/Datatest/DATA_QC/C3S-CMIP6/grr/pr_day_NorCPM1_historical_r1i1p1f1_gn_19500101-20141231.nc
+Parameters: {'threshold': 5, 'method': 'Z-Score'}
+--- Messages ---
+Outliers detected: 13 points.
+Outliers detected in minimum time series: 9 points.
+
+--- Results (coordinates, values) ---
+z-score	(44, 130)	2.255091544611787e-07,Z-Score:17.32595443725586
+z-score	(47, 4)	1.7635491644796275e-07,Z-Score:13.542728424072266
+z-score	(48, 123)	5.736422963309451e-07,Z-Score:44.12051773071289
+z-score	(49, 123)	6.899364279888687e-07,Z-Score:53.071258544921875
+z-score	(50, 123)	1.7488494563622226e-07,Z-Score:13.42958927154541
+The rest of the coordinates are in the summary
+--- Summary ---
+Dataset: /home/anachite/Bureau/Datatest/DATA_QC/C3S-CMIP6/grr/pr_day_NorCPM1_historical_r1i1p1f1_gn_19500101-20141231.nc
+Test: check_spatial_statistical_outliers
+Variable: pr
+Parameters: {'threshold': 5, 'method': 'Z-Score'}
+Score: 0/1
+Messages: ['Outliers detected: 13 points.', 'Outliers detected in minimum time series: 9 points.']
+Coordinates and results:
+Name	Index	Value	Score
+z-score	(44, 130)	2.255091544611787e-07	Z-Score:17.32595443725586
+z-score	(47, 4)	1.7635491644796275e-07	Z-Score:13.542728424072266
+z-score	(48, 123)	5.736422963309451e-07	Z-Score:44.12051773071289
+z-score	(49, 123)	6.899364279888687e-07	Z-Score:53.071258544921875
+z-score	(50, 123)	1.7488494563622226e-07	Z-Score:13.42958927154541
+z-score	(51, 119)	8.91522745405382e-07	Z-Score:68.58663940429688
+z-score	(51, 120)	7.606155918438162e-07	Z-Score:58.51118087768555
+z-score	(53, 111)	6.919361084101183e-08	Z-Score:5.294905662536621
+z-score	(53, 117)	9.801122757835401e-08	Z-Score:7.512894630432129

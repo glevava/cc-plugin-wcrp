@@ -12,10 +12,14 @@ Each plugin has its own orchestration layer (`wcrp_project.py`), which acts as t
 
 ## Available Plugins
 
-| Plugin Name | Checker Tag | Description |
-|--------------|--------------|-------------|
-| **wcrp_cmip6** | `wcrp_cmip6:1.0` | Validation of CMIP6 NetCDF files |
-| **wcrp_cordex_cmip6** | `wcrp_cordex_cmip6:1.0` | Validation of CORDEX-CMIP6 NetCDF files |
+| Plugin Name           | Checker Tag             | Description                                 |
+| --------------------- | ----------------------- | ------------------------------------------- |
+| **wcrp_cmip6**        | `wcrp_cmip6:1.0`        | Validation of CMIP6 NetCDF files            |
+| **wcrp_cordex_cmip6** | `wcrp_cordex_cmip6:1.0` | Validation of CORDEX-CMIP6 NetCDF files     |
+| **wcrp_cmip7**        | `wcrp_cmip7:1.0`        | Validation of CMIP7 NetCDF files            |
+| **wcrp_data**         | `wcrp_data:1.0`         | Data Validation of CMIP6/CMIP7 NetCDF files |
+
+
 
 Each plugin has its own **TOML configuration file** defining specific rules, severities, and variable mappings.
 
@@ -25,7 +29,7 @@ Each plugin has its own **TOML configuration file** defining specific rules, sev
 
 Each WCRP plugin:
 
-**Loads its configuration file** (`wcrp_cmip6.toml` or `wcrp_cordex_cmip6.toml`), which defines:
+**Loads its configuration file** (`wcrp_cmip6.toml` / `wcrp_cordex_cmip6.toml` / `wcrp_cmip6.toml`/ `wcrp_data.toml`), which defines:
 
  - Which checks to run (DRS, attributes, time, metadata, etc.)
  - The severity of each check (High = Mandatory, Medium = Recommended, Low = Warning)
@@ -43,15 +47,18 @@ Each WCRP plugin:
 
 Each plugin is driven by its own TOML file:
 
-- **`wcrp_cmip6.toml`**  
-  Main configuration for CMIP6 checks, mapping variables, severities, and project rules.
+- **`wcrp_cmip6.toml`**  / **`wcrp_cmip7.toml`** 
+  Main configuration for CMIP6/CMIP7 checks, mapping variables, severities, and project rules.
 
 - **`wcrp_cordex_cmip6.toml`**  
   Adapted version for CORDEX-CMIP6)context.
 
+- **`wcrp_data.toml`**  
+  Adapted version for Data checks.  
+
 - **`mapping_variables.toml`**  
   Helper file mapping `<table_id>.<variable_id>` to standard variable definitions  
   (dimensions, expected attributes, cell methods, etc.).  
-  This is a **temporary bridge** until the official ESGVOC vocabulary exposes all required metadata.
+  This is a **temporary bridge** for CMIP6 until the official ESGVOC vocabulary exposes all required metadata.
 
 ---

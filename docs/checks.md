@@ -38,65 +38,38 @@ These checks ensure that the **NetCDF file format** and **compression options** 
 ## Detailed Inventory
 For the full list of checks (IDs, description) :
 
-| Category | Check | Check_id |
-|---|---|---|   
-| File | Validate filename pattern and tokens against CV| FILE001 |
-| File | Check file format| FILE002 |
-| File | Check compression file settings| FILE003 |
-| Attributes | Check the existence of an attribute | ATTR001 |
-| Attributes | Check the type on an attribute | ATTR002 |
-| Attributes | Check encoding (e.g., UTF-8) of an  attribute | ATTR003 |
-| Attributes | Check the value of an attribute against CV or another constraint | ATTR004 |
-| Attributes | Check the constitency of filename tokens with global attributes | ATTR005 |
-| Attributes | Check the consistency of attributes related to variant/member | ATTR006 |
-| Attributes | Check the consistency of attributes related to experiment details | ATTR007 |
-| Attributes | Check the consistency between table_id and frequency attributes| ATTR008 |
-| Attributes | Check the consistency of attributes related to institution details | ATTR009 |
-| Attributes | Check the consistency of attributes related to source details | ATTR010 |
-| Variables | Check the existence of variable | VAR001 |
-| Variables | Check the shape aligns with corresponding dimension | VAR002 |
-| Variables | Check the consistency of time axis coverage with time range from filename | VAR003|
-| Variables | Ensure each value lies within the range specified by corresponding boundary variable | VAR004 |
-| Variables | Check the type of the variable | VAR005 |
-| Dimensions | Check the existence of dimension| DIM001 |
-| Dimensions | Check the value is a positive integer | DIM002 |
-| Dimensions | Check dimension size | DIM003 |
-| Directory | Check consistency of directory structure tokens with global attributes | PATH001 |
-| Directory | Check consistency of directory structure tokens with filename tokens | PATH002 |
-| Directory | alidate directory structure tokens and pattern against CV| PATH003 |
-| Data | Check for NaN/Inf values in variable | DATA001 |
-| Data | FillValue/MissingValue plausibility for variable | DATA002 |
-| Data | Constant field detection for variable | DATA003 |
-| Data | Check pysically impossible outlier | DATA004 |
-| Data | Check spatial statistical outliers | DATA005 |
-| Data | Chunk size Check | DATA006 |
+| Category   | Check                                                                                | Check_id |
+| ---------- | ------------------------------------------------------------------------------------ | -------- |
+| File       | Validate filename pattern and tokens against CV                                      | FILE001  |
+| File       | Check file format                                                                    | FILE002  |
+| File       | Check compression file settings                                                      | FILE003  |
+| Attributes | Check the existence of an attribute                                                  | ATTR001  |
+| Attributes | Check the type on an attribute                                                       | ATTR002  |
+| Attributes | Check encoding (e.g., UTF-8) of an  attribute                                        | ATTR003  |
+| Attributes | Check the value of an attribute against CV or another constraint                     | ATTR004  |
+| Attributes | Check the constitency of filename tokens with global attributes                      | ATTR005  |
+| Attributes | Check the consistency of attributes related to variant/member                        | ATTR006  |
+| Attributes | Check the consistency of attributes related to experiment details                    | ATTR007  |
+| Attributes | Check the consistency between table_id and frequency attributes                      | ATTR008  |
+| Attributes | Check the consistency of attributes related to institution details                   | ATTR009  |
+| Attributes | Check the consistency of attributes related to source details                        | ATTR010  |
+| Variables  | Dimensions count vs Variable Registry                                                | VAR000   |
+| Variables  | Check the existence of variable                                                      | VAR001   |
+| Variables  | Check the shape aligns with corresponding dimension                                  | VAR002   |
+| Variables  | Check the consistency of time axis coverage with time range from filename            | VAR003   |
+| Variables  | Ensure each value lies within the range specified by corresponding boundary variable | VAR004   |
+| Variables  | Check the type of the variable                                                       | VAR005   |
+| Dimensions | Check the existence of dimension                                                     | DIM001   |
+| Dimensions | Check the value is a positive integer                                                | DIM002   |
+| Dimensions | Check dimension size                                                                 | DIM003   |
+| Directory  | Check consistency of directory structure tokens with global attributes               | PATH001  |
+| Directory  | Check consistency of directory structure tokens with filename tokens                 | PATH002  |
+| Directory  | alidate directory structure tokens and pattern against CV                            | PATH003  |
+| Data       | Check for NaN/Inf values in variable                                                 | DATA001  |
+| Data       | FillValue/MissingValue plausibility for variable                                     | DATA002  |
+| Data       | Constant field detection for variable                                                | DATA003  |
+| Data       | Check pysically impossible outlier                                                   | DATA004  |
+| Data       | Check spatial statistical outliers                                                   | DATA005  |
+| Data       | Chunk size Check                                                                     | DATA006  |
 
 
-
-if constraint is None and isinstance(attr_value, str) and expected_type == "str" and project_name:
-        vocab_ctx = TestCtx(severity, label("ATTR004", "ESGVOC Vocabulary Check"))
-        try:
-            
-            # e.g., 'parent_activity_id' -> 'activity_id'
-            target_collection = attribute_name.lower()
-            if target_collection.startswith("parent_"):
-                target_collection = target_collection.replace("parent_", "", 1)
-            if target_collection in MULTI_TERM_ATTRIBUTES:
-                values_to_check = attr_value.strip().split()
-            else:
-                values_to_check = [attr_value]
-            
-            invalid_values = []                       
-
-            for val in values_to_check:
-               
-                if not voc.valid_term_in_collection(       
-                    value=val,
-                    project_id=project_name,
-                    collection_id=target_collection
-                ):
-                    invalid_values.append(val)   
-            
-            if not invalid_values:
-                vocab_ctx.add_pass()
-            else:
