@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://github.com/ESGF/cc-plugin-wcrp/configuration/">
       
       
+        <link rel="prev" href="../wcrp_plugins/">
+      
+      
+        <link rel="next" href="../cf_plugin/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -337,6 +341,250 @@
   
 
       </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-configuration-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configuration layout
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-project-configurations-shipped-with-the-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Project configurations shipped with the plugin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-file-naming-and-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. File naming and purpose
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. File naming and purpose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projecttoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      project.toml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filetoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      file.toml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drstoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      drs.toml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global_attributestoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      global_attributes.toml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geophysical_variabletoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      geophysical_variable.toml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coordinate_variablestoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_variables.toml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mappingstoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      mappings/*.toml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-rule-structure-pydantic-model-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Rule structure (Pydantic model overview)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-attr004-rule-exclusivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. ATTR004 rule exclusivity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-attribute-rule-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Attribute rule parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Attribute rule parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common fields
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attr004-value-validation-rules-exclusive" class="md-nav__link">
+    <span class="md-ellipsis">
+      ATTR004: value validation rules (exclusive)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-how-to-create-your-own-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. How to create your own configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. How to create your own configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fork-from-cmip6-or-cmip7-project-configs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fork from cmip6 or cmip7 project configs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
