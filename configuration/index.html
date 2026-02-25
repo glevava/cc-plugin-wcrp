@@ -411,9 +411,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#11-project-configurations-shipped-with-the-plugin" class="md-nav__link">
+  <a href="#11-project-configurations" class="md-nav__link">
     <span class="md-ellipsis">
-      1.1 Project configurations shipped with the plugin
+      1.1 Project configurations
     </span>
   </a>
   
@@ -669,9 +669,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#11-project-configurations-shipped-with-the-plugin" class="md-nav__link">
+  <a href="#11-project-configurations" class="md-nav__link">
     <span class="md-ellipsis">
-      1.1 Project configurations shipped with the plugin
+      1.1 Project configurations
     </span>
   </a>
   
@@ -879,11 +879,11 @@
 </code></pre>
 <p><strong>Important:</strong></p>
 <ul>
-<li>The configuration is loaded by the project plugin (e.g. <code>wcrp_cmip6</code>), then validated with the Pydantic model (schema).</li>
+<li>The configuration is loaded by the project plugin (e.g. <code>wcrp_cmip6</code>), then validated with the Pydantic model (<code>wcrp_schema.py</code>).</li>
 <li>If a section is missing in TOML, the corresponding checks are typically <strong>skipped</strong> (the plugin only runs checks for configured sections).</li>
 </ul>
 <hr />
-<h2 id="11-project-configurations-shipped-with-the-plugin">1.1 Project configurations shipped with the plugin</h2>
+<h2 id="11-project-configurations">1.1 Project configurations</h2>
 <p>This repository ships reference configurations for each WCRP plugin:</p>
 <ul>
 <li><strong>CMIP6 (<code>wcrp_cmip6</code>)</strong>: split-TOML configuration under <code>plugins/cmip6/config/wcrp/</code>.</li>
@@ -946,10 +946,10 @@
 - <code>variable_id_to_branded_variable.toml</code></p>
 <hr />
 <h2 id="3-rule-structure-pydantic-model-overview">3. Rule structure (Pydantic model overview)</h2>
-<p>The Pydantic schema (wcrp_schema.py) defines what keys are accepted and how rules are interpreted. At a high level:</p>
+<p>The Pydantic schema (<code>wcrp_schema.py</code>) defines what keys are accepted and how rules are interpreted. At a high level:</p>
 <ul>
-<li><strong>Global attributes</strong> apply to the dataset (<code>ds</code>).</li>
-<li><strong>Variable attributes</strong> apply to a netCDF variable (<code>ds.variables[var]</code>).</li>
+<li><strong>Global attributes</strong> apply to the dataset.</li>
+<li><strong>Variable attributes</strong> apply to a netCDF variables.</li>
 <li><strong>Coordinate attributes</strong> apply to coordinate variables (<code>time</code>, <code>lat</code>, <code>lon</code>, …).</li>
 </ul>
 <p>A typical attribute rule looks like:</p>
@@ -974,7 +974,6 @@ cv_source_collection = &quot;conventions&quot;
 - <code>cv_source_term_key</code> (registry expected-term)</p>
 <p><strong>Exception:</strong><br />
 <code>cv_source_collection</code> and <code>cv_source_collection_key</code> can be used together because the key is a parameter of the vocabulary rule.</p>
-<hr />
 <hr />
 <h2 id="5-attribute-rule-parameters">5. Attribute rule parameters</h2>
 <p>Most checks in <code>global_attributes.toml</code>, <code>geophysical_variable.toml</code>, and <code>coordinate_variables.toml</code> are driven by <strong>attribute rules</strong>. A rule is a small TOML table that describes:
@@ -1042,7 +1041,7 @@ The only allowed combination is <code>cv_source_collection</code> <strong>with</
 <li>
 <p><code>cv_source_term_key</code> (str) :
   Variable Registry expected-term comparison.
-  The plugin resolves an <code>expected_term</code> from the registry (based on file metadata + mappings for <code>cmip6</code> and branded_variable global attribute for <code>cmip7</code>) and compares the attribute value to <code>expected_term.&lt;cv_source_term_key&gt;</code>.
+  The plugin resolves an <code>expected_term</code> from the variable registry (based on file metadata + mappings for <code>cmip6</code> and branded_variable global attribute for <code>cmip7</code>) and compares the attribute value to <code>expected_term.&lt;cv_source_term_key&gt;</code>.
   Example (geophysical variable only):</p>
 <p>cv_source_term_key = "cf_units"</p>
 </li>
@@ -1093,7 +1092,7 @@ cv_source_term_key = "cf_units"
 - change required attributes
 - adapt your severities<br />
 - adjust patterns/constants/enums
-- adjust coordinate rules (bounds/dimensions/monotonicity) ....</p>
+- adjust coordinate rules (bounds/dimensions/monotonicity) etc..</p>
 <p>3) Keep mappings consistent</p>
 <p>This approach guarantees you keep the same structure expected by the schema.</p>
 <hr />
