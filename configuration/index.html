@@ -877,9 +877,11 @@
             ├── table_id_to_time_increment.toml
             └── variable_id_to_branded_variable.toml
 </code></pre>
-<p><strong>Important:</strong>
-- The configuration is loaded by the project plugin (e.g. <code>wcrp_cmip6</code>), then validated with the Pydantic model (schema).
-- If a section is missing in TOML, the corresponding checks are typically <strong>skipped</strong> (the plugin only runs checks for configured sections).</p>
+<p><strong>Important:</strong></p>
+<ul>
+<li>The configuration is loaded by the project plugin (e.g. <code>wcrp_cmip6</code>), then validated with the Pydantic model (schema).</li>
+<li>If a section is missing in TOML, the corresponding checks are typically <strong>skipped</strong> (the plugin only runs checks for configured sections).</li>
+</ul>
 <hr />
 <h2 id="11-project-configurations-shipped-with-the-plugin">1.1 Project configurations shipped with the plugin</h2>
 <p>This repository ships reference configurations for each WCRP plugin:</p>
