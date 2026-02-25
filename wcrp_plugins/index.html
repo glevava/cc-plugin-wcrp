@@ -398,11 +398,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#toml-configuration-files" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      TOML Configuration Files
+      Configuration
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-status-by-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current status by plugin
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -503,11 +518,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#toml-configuration-files" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      TOML Configuration Files
+      Configuration
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-status-by-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current status by plugin
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -575,7 +605,7 @@
 <hr />
 <h2 id="what-each-plugin-does">What Each Plugin Does</h2>
 <p>Each WCRP plugin:</p>
-<p><strong>Loads its configuration file</strong> (<code>wcrp_cmip6.toml</code> / <code>wcrp_cordex_cmip6.toml</code> / <code>wcrp_cmip6.toml</code>/ <code>wcrp_data.toml</code>), which defines:</p>
+<p><strong>Loads its configuration file(s)</strong>, which defines:</p>
 <ul>
 <li>Which checks to run (DRS, attributes, time, metadata, etc.)</li>
 <li>The severity of each check (High = Mandatory, Medium = Recommended, Low = Warning)</li>
@@ -587,29 +617,17 @@
 <p><strong>Aggregates results</strong> and returns them to the Compliance Checker core,<br />
    which formats them into human-readable or machine-readable outputs (text, HTML, JSON).</p>
 <hr />
-<h2 id="toml-configuration-files">TOML Configuration Files</h2>
-<p>Each plugin is driven by its own TOML file:</p>
+<h2 id="configuration">Configuration</h2>
+<p>WCRP plugins are driven by TOML configuration files. CMIP6/CMIP7 currently use a <strong>split-TOML</strong> layout, while CORDEX-CMIP6 and the Data plugin still rely on a <strong>single TOML</strong> file (legacy layout).</p>
+<p>For a full description of the TOML tree, naming conventions, and the underlying configuration model, see: <strong>Configuration</strong> (<code>configuration.md</code>).</p>
+<h3 id="current-status-by-plugin">Current status by plugin</h3>
 <ul>
-<li>
-<p><strong><code>wcrp_cmip6.toml</code></strong>  / <strong><code>wcrp_cmip7.toml</code></strong> 
-  Main configuration for CMIP6/CMIP7 checks, mapping variables, severities, and project rules.</p>
-</li>
-<li>
-<p><strong><code>wcrp_cordex_cmip6.toml</code></strong><br />
-  Adapted version for CORDEX-CMIP6)context.</p>
-</li>
-<li>
-<p><strong><code>wcrp_data.toml</code></strong><br />
-  Adapted version for Data checks.  </p>
-</li>
-<li>
-<p><strong><code>mapping_variables.toml</code></strong><br />
-  Helper file mapping <code>&lt;table_id&gt;.&lt;variable_id&gt;</code> to standard variable definitions<br />
-  (dimensions, expected attributes, cell methods, etc.).<br />
-  This is a <strong>temporary bridge</strong> for CMIP6 until the official ESGVOC vocabulary exposes all required metadata.</p>
-</li>
+<li><strong>CMIP6 (<code>wcrp_cmip6</code>)</strong>: uses the split-TOML layout under <code>plugins/cmip6/config/wcrp/</code> (plus <code>mappings/</code>).</li>
+<li><strong>CMIP7 (<code>wcrp_cmip7</code>)</strong>: uses the split-TOML layout under <code>plugins/cmip7/config/wcrp/</code>.</li>
+<li><strong>CORDEX-CMIP6 (<code>wcrp_cordex_cmip6</code>)</strong>: <em>for now</em> uses the legacy single-file configuration (e.g. <code>wcrp_config.toml</code> + <code>mapping_variables.toml</code>).<br />
+  This will be migrated to the same split-TOML structure as CMIP6/CMIP7.</li>
+<li><strong>Data plugin (<code>wcrp_data</code>)</strong>: kept as a <strong>single TOML</strong> configuration for now (data plausibility focused), to remain lightweight and independent from project-specific split trees.</li>
 </ul>
-<hr />
 
 
 
