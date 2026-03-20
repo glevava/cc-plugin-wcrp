@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 
 
-import xarray as xr
 from compliance_checker.base import BaseCheck, TestCtx
 
-from checks.utils import severity_word
+from checks.utils import crosses_anti_meridian, crosses_zero_meridian, severity_word
 
 
 def check_lon_value_range(CheckerObject, severity=BaseCheck.MEDIUM):
@@ -36,11 +35,17 @@ def check_lon_value_range(CheckerObject, severity=BaseCheck.MEDIUM):
 
     # Get domain_id from global attributes
     domain_id = CheckerObject._get_attr("domain_id", default="")
+    if not isinstance(domain_id, str):
+        domain_id = ""
 
     # Check if longitude coordinates are strictly monotonically increasing
     if lon.ndim != 2:
         testctx.add_failure("The longitude coordinate should have two dimensions.")
-    elif domain_id.startswith('ARC') or domain_id.startswith('ANT'):
+    elif (
+        domain_id.startswith("ARC")
+        or domain_id.startswith("ANT")
+        or (crosses_anti_meridian(lon) and crosses_zero_meridian(lon))
+    ):
         # The polar domains are exempt from monotony tests because they cross both the meridian and anti-meridian
         testctx.add_pass()
     else:
