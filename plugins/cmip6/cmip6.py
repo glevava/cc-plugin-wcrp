@@ -502,7 +502,7 @@ class Cmip6ProjectCheck(WCRPBaseCheck):
 
         if c.filename_vs_attributes:
             sev = self.get_severity(c.filename_vs_attributes.severity)
-            res.extend(check_filename_vs_global_attrs(ds, sev))
+            res.extend(check_filename_vs_global_attrs(ds, sev, project_id=self.project_name))
 
         if c.experiment_properties:
             sev = self.get_severity(c.experiment_properties.severity)

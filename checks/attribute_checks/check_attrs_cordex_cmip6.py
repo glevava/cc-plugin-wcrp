@@ -128,7 +128,7 @@ def check_grid_mapping(CheckerObject, severity=BaseCheck.MEDIUM):
     return [testctx.to_result()]
 
 
-def check_domain_id(CheckerObject, severity=BaseCheck.MEDIUM):
+def check_domain_id(CheckerObject, severity=BaseCheck.MEDIUM, use_esgvoc=False):
     """
     Checks if the domain_id is compliant with the CORDEX-CMIP6 archive specifications.
 
@@ -138,6 +138,8 @@ def check_domain_id(CheckerObject, severity=BaseCheck.MEDIUM):
         The initialized WCRPBaseCheck object for the project/dataset being checked.
     severity : str
         The severity of the check. Default: BaseCheck.MEDIUM.
+    use_esgvoc : bool
+        If True, skip the parts of the check that rely on the CORDEX-CMIP6 CV tables.
 
     Returns
     -------
@@ -179,6 +181,11 @@ def check_domain_id(CheckerObject, severity=BaseCheck.MEDIUM):
     else:
         testctx.add_pass()
 
+    # Do not run comparison against CV if esgvoc is used
+    if use_esgvoc:
+        testctx.add_pass()
+        return [testctx.to_result()]
+
     # Check if domain_id is in the CV
     if domain_id not in CheckerObject.CV["domain_id"]:
         testctx.add_failure(
@@ -190,7 +197,7 @@ def check_domain_id(CheckerObject, severity=BaseCheck.MEDIUM):
     return [testctx.to_result()]
 
 
-def check_institution(CheckerObject, severity=BaseCheck.MEDIUM):
+def check_institution(CheckerObject, severity=BaseCheck.MEDIUM, use_esgvoc=False):
     """
     Checks if the institution is compliant with the CV.
 
@@ -200,6 +207,8 @@ def check_institution(CheckerObject, severity=BaseCheck.MEDIUM):
         The initialized WCRPBaseCheck object for the project/dataset being checked.
     severity : str
         The severity of the check. Default: BaseCheck.MEDIUM.
+    use_esgvoc : bool
+        If True, skip the parts of the check that rely on the CORDEX-CMIP6 CV tables.
 
     Returns
     -------
@@ -208,6 +217,11 @@ def check_institution(CheckerObject, severity=BaseCheck.MEDIUM):
     check_id = "CDXA001"
     desc = f"[{check_id}] institution"
     testctx = TestCtx(severity, desc)
+
+    # Do not run comparison against CV if esgvoc is used
+    if use_esgvoc:
+        testctx.add_pass()
+        return [testctx.to_result()]
 
     # Get institution from global attributes
     institution = CheckerObject._get_attr("institution", default=False)
@@ -266,7 +280,9 @@ def check_references(CheckerObject, severity=BaseCheck.MEDIUM):
     return [testctx.to_result()]
 
 
-def check_version_realization_info(CheckerObject, severity=BaseCheck.MEDIUM):
+def check_version_realization_info(
+    CheckerObject, severity=BaseCheck.MEDIUM, use_esgvoc=False
+):
     """
     Checks if version_realization_info is defined when and as recommended in the CORDEX-CMIP6 archive specifications.
 
@@ -276,6 +292,8 @@ def check_version_realization_info(CheckerObject, severity=BaseCheck.MEDIUM):
         The initialized WCRPBaseCheck object for the project/dataset being checked.
     severity : str
         The severity of the check. Default: BaseCheck.MEDIUM.
+    use_esgvoc : bool
+        If True, skip the parts of the check that rely on the CORDEX-CMIP6 CV tables.
 
     Returns
     -------
@@ -284,6 +302,11 @@ def check_version_realization_info(CheckerObject, severity=BaseCheck.MEDIUM):
     check_id = "CDXA001"
     desc = f"[{check_id}] version_realization_info"
     testctx = TestCtx(severity, desc)
+
+    # Do not run comparison with CV if esgvoc is used
+    if use_esgvoc:
+        testctx.add_pass()
+        return [testctx.to_result()]
 
     if (
         any(
@@ -348,7 +371,9 @@ def check_grid(CheckerObject, severity=BaseCheck.LOW):
     return [testctx.to_result()]
 
 
-def check_version_realization(CheckerObject, severity=BaseCheck.MEDIUM):
+def check_version_realization(
+    CheckerObject, severity=BaseCheck.MEDIUM, use_esgvoc=False
+):
     """
     Checks if version_realization is defined as required in the CORDEX-CMIP6 archive specifications.
 
@@ -358,6 +383,8 @@ def check_version_realization(CheckerObject, severity=BaseCheck.MEDIUM):
         The initialized WCRPBaseCheck object for the project/dataset being checked.
     severity : str
         The severity of the check. Default: BaseCheck.MEDIUM.
+    use_esgvoc : bool
+        If True, skip the parts of the check that rely on the CORDEX-CMIP6 CV tables.
 
     Returns
     -------
@@ -368,6 +395,11 @@ def check_version_realization(CheckerObject, severity=BaseCheck.MEDIUM):
     check_id = "CDXA001"
     desc = f"[{check_id}] version_realization"
     testctx = TestCtx(severity, desc)
+
+    # Do not run comparison with CV if esgvoc is used
+    if use_esgvoc:
+        testctx.add_pass()
+        return [testctx.to_result()]
 
     # Filename
     expected = r"Expected pattern: 'v[1-9]\d*-r[1-9]\d*', eg. 'v1-r3'."
@@ -424,7 +456,9 @@ def check_version_realization(CheckerObject, severity=BaseCheck.MEDIUM):
     return [testctx.to_result()]
 
 
-def check_driving_attributes(CheckerObject, severity=BaseCheck.MEDIUM):
+def check_driving_attributes(
+    CheckerObject, severity=BaseCheck.MEDIUM, use_esgvoc=False
+):
     """
     Checks if all driving attributes are defined as required by the CORDEX-CMIP6 archive specifications.
 
@@ -434,6 +468,8 @@ def check_driving_attributes(CheckerObject, severity=BaseCheck.MEDIUM):
         The initialized WCRPBaseCheck object for the project/dataset being checked.
     severity : str
         The severity of the check. Default: BaseCheck.MEDIUM.
+    use_esgvoc : bool
+        If True, skip the parts of the check that rely on the CORDEX-CMIP6 CV tables.
 
     Returns
     -------
@@ -479,6 +515,10 @@ def check_driving_attributes(CheckerObject, severity=BaseCheck.MEDIUM):
     if not drivs:
         testctx.add_pass()
     else:
+        # Do not run comparison with CV if esgvoc is used
+        if use_esgvoc:
+            testctx.add_pass()
+            return [testctx.to_result()]
         # Abort if driving_source_id undefined or unknown (will cause a failed check elsewhere)
         if not dsi or dsi not in CheckerObject.CV["driving_source_id"]:
             testctx.add_pass()

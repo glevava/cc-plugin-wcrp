@@ -127,39 +127,72 @@ class CordexCmip6ProjectCheck(WCRPBaseCheck):
 
         # Make use of CMOR tables for variable checks
         #  at a later time ESGVOC will be used for variable checks
-        if not self.options.get("tables", False):
-            tables_path = self.options.get(
-                "tables_dir", "~/.wcrp_metadata/cordex-cmip6-cmor-tables"
-            )
-            for table in [
-                "coordinate",
-                "grids",
-                "formula_terms",
-                "CV",
-                "1hr",
-                "6hr",
-                "day",
-                "mon",
-                "fx",
-            ]:
-                filename = "CORDEX-CMIP6_" + table + ".json"
-                url = CORDEX_CMIP6_CMOR_TABLES_URL + filename
-                filename_retrieved = retrieve(
-                    CORDEX_CMIP6_CMOR_TABLES_URL + "CORDEX-CMIP6_" + table + ".json",
-                    filename,
-                    tables_path,
-                    force=self.options.get("force_table_download", False),
+        self.verification_against_tables = True
+        if self.verification_against_tables is True or (
+            "verification_against_tables" in self.options
+            and (
+                self.options["verification_against_tables"] is None
+                or (
+                    isinstance(self.options["verification_against_tables"], bool)
+                    and self.options["verification_against_tables"]
                 )
-                if os.path.basename(os.path.realpath(filename_retrieved)) != filename:
-                    raise AssertionError(
-                        f"Download failed for CV table '{filename_retrieved}' (source: '{url}')."
+                or (
+                    isinstance(self.options["verification_against_tables"], str)
+                    and self.options["verification_against_tables"].lower() != "false"
+                )
+            )
+        ):
+            self.verification_against_tables = True
+            if not self.options.get("tables", False):
+                tables_path = self.options.get(
+                    "tables_dir", "~/.wcrp_metadata/cordex-cmip6-cmor-tables"
+                )
+                for table in [
+                    "coordinate",
+                    "grids",
+                    "formula_terms",
+                    "CV",
+                    "1hr",
+                    "6hr",
+                    "day",
+                    "mon",
+                    "fx",
+                ]:
+                    filename = "CORDEX-CMIP6_" + table + ".json"
+                    url = CORDEX_CMIP6_CMOR_TABLES_URL + filename
+                    filename_retrieved = retrieve(
+                        CORDEX_CMIP6_CMOR_TABLES_URL
+                        + "CORDEX-CMIP6_"
+                        + table
+                        + ".json",
+                        filename,
+                        tables_path,
+                        force="force_table_download" in self.options
+                        and (
+                            self.options["force_table_download"] is None
+                            or (
+                                isinstance(self.options["force_table_download"], bool)
+                                and self.options["force_table_download"]
+                            )
+                            or (
+                                isinstance(self.options["force_table_download"], str)
+                                and self.options["force_table_download"].lower()
+                                != "false"
+                            )
+                        ),
                     )
-
-            self._initialize_CV_info(tables_path)
-            self._initialize_time_info()
-            self._initialize_coords_info()
-        if self.consistency_output:
-            self._write_consistency_output()
+                    if (
+                        os.path.basename(os.path.realpath(filename_retrieved))
+                        != filename
+                    ):
+                        raise AssertionError(
+                            f"Download failed for CV table '{filename_retrieved}' (source: '{url}')."
+                        )
+                self._initialize_CV_info(tables_path)
+                self._initialize_time_info()
+                self._initialize_coords_info()
+            if self.consistency_output:
+                self._write_consistency_output()
 
     def check_format(self, ds):
         """
@@ -350,6 +383,7 @@ class CordexCmip6ProjectCheck(WCRPBaseCheck):
                 check_domain_id(
                     self,
                     severity=self.get_severity(check_config.get("severity")),
+                    use_esgvoc=not self.verification_against_tables,
                 )
             )
 
@@ -359,6 +393,7 @@ class CordexCmip6ProjectCheck(WCRPBaseCheck):
                 check_institution(
                     self,
                     severity=self.get_severity(check_config.get("severity")),
+                    use_esgvoc=not self.verification_against_tables,
                 )
             )
 
@@ -377,6 +412,7 @@ class CordexCmip6ProjectCheck(WCRPBaseCheck):
                 check_version_realization(
                     self,
                     severity=self.get_severity(check_config.get("severity")),
+                    use_esgvoc=not self.verification_against_tables,
                 )
             )
 
@@ -386,6 +422,7 @@ class CordexCmip6ProjectCheck(WCRPBaseCheck):
                 check_version_realization_info(
                     self,
                     severity=self.get_severity(check_config.get("severity")),
+                    use_esgvoc=not self.verification_against_tables,
                 )
             )
 
@@ -404,6 +441,7 @@ class CordexCmip6ProjectCheck(WCRPBaseCheck):
                 check_driving_attributes(
                     self,
                     severity=self.get_severity(check_config.get("severity")),
+                    use_esgvoc=not self.verification_against_tables,
                 )
             )
 
@@ -515,6 +553,7 @@ class CordexCmip6ProjectCheck(WCRPBaseCheck):
                 severity=severity,
                 project_id=project_name,
                 drs_elements_hard_checks=drs_elements_hard_checks,
+                use_esgvoc=not self.verification_against_tables,
             )
         )
 
@@ -525,6 +564,7 @@ class CordexCmip6ProjectCheck(WCRPBaseCheck):
                 severity=severity,
                 project_id=project_name,
                 drs_elements_hard_checks=drs_elements_hard_checks,
+                use_esgvoc=not self.verification_against_tables,
             )
         )
 
@@ -583,6 +623,7 @@ class CordexCmip6ProjectCheck(WCRPBaseCheck):
             check_required_global_attributes_existence_cv(
                 self,
                 severity=severity,
+                use_esgvoc=not self.verification_against_tables,
             )
         )
         # Value
@@ -591,6 +632,7 @@ class CordexCmip6ProjectCheck(WCRPBaseCheck):
                 self,
                 severity=severity,
                 global_attrs_hard_checks=global_attrs_hard_checks,
+                use_esgvoc=not self.verification_against_tables,
             )
         )
         return results
@@ -651,6 +693,7 @@ class CordexCmip6ProjectCheck(WCRPBaseCheck):
                 check_filename_vs_global_attrs(
                     ds=ds,
                     severity=self.get_severity(check_config.get("severity")),
+                    project_id=self.project_name,
                     filename_template_keys=check_config.get("filename_template_keys"),
                 )
             )
