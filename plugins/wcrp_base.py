@@ -539,8 +539,10 @@ class WCRPBaseCheck(BaseCheck):
             drs_filename_template = re.findall(
                 r"<([^<>]*)\>", self.CV["DRS"]["filename_template"]
             )
-            self.drs_suffix = ".".join(
-                self.CV["DRS"]["filename_template"].split(".")[1:]
+            if "time_range" not in drs_filename_template:
+                drs_filename_template.append("time_range")
+            self.drs_suffix = (
+                ".".join(self.CV["DRS"]["filename_template"].split(".")[1:]) or "nc"
             )
         except KeyError:
             raise KeyError("The CV does not contain DRS information.")
