@@ -218,7 +218,7 @@ def check_time_squareness(
 
     freq_id = _resolve_frequency(ds)
     if not freq_id:
-        ctx.add_warning(
+        ctx.add_failure(
             "Missing global attribute 'frequency'; cannot resolve expected step."
         )
         return [ctx.to_result()]
@@ -226,7 +226,7 @@ def check_time_squareness(
     table_id = _resolve_table_id(ds)
     inc = _resolve_increment(table_id, freq_id, frequency or {})
     if not inc:
-        ctx.add_warning(
+        ctx.add_failure(
             f"Cannot resolve increment for (table_id={table_id}, frequency={freq_id})."
         )
         return [ctx.to_result()]

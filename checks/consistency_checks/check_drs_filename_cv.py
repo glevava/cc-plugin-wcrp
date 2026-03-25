@@ -13,7 +13,7 @@ except ImportError:
 
 def _normalize_project_id(project_id: str) -> str:
     if isinstance(project_id, str) and project_id.lower() == "cmip7":
-        return "CMIP7"
+        return "cmip7"
     if isinstance(project_id, str) and project_id.lower() == "cmip6":
         return "cmip6"
     return project_id
@@ -76,7 +76,6 @@ def check_drs_directory(ds, severity, project_id="cmip6"):
         ctx.add_failure("File path could not be determined.")
         return [ctx.to_result()]
 
-    # If dataset declares drs_specs, prefer parsing from that directory name.
     drs_specs = None
     try:
         drs_specs = ds.getncattr("drs_specs")

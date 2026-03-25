@@ -53,9 +53,9 @@ pattern = ".*"
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
 attribute_name = "Conventions"
 severity = "H"
-value_type = "str"
+value_type = "str_array"
 is_required = true
-cv_source_collection = "conventions"
+cv_source_collection = "Conventions"
 
 [global.attributes.creation_date]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
@@ -96,9 +96,9 @@ cv_source_collection = "experiment"
 [global.attributes.external_variables]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
 severity = "H"
-value_type = "str"
+value_type = "str_array"
 is_required = false
-cv_source_collection = "archive"
+cv_source_collection = "variable"
 
 [global.attributes.forcing_index]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
@@ -138,7 +138,7 @@ is_required = true
 severity = "M"
 value_type = "str"
 is_required = false
-cv_source_collection = "institution"
+cv_source_collection = "organisation"
 cv_source_collection_key = "description"
 
 [global.attributes.institution_id]
@@ -146,7 +146,7 @@ cv_source_collection_key = "description"
 severity = "H"
 value_type = "str"
 is_required = true
-cv_source_collection = "institution"
+cv_source_collection = "organisation"
 
 [global.attributes.license]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
@@ -206,7 +206,7 @@ cv_source_collection = "source"
 
 [global.attributes.parent_time_units]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
-pattern = '^days since [0-9]{4}-[0-9]{1,2}-[0-9]{1,2} \((gregorian|standard|proleptic_gregorian|julian|noleap|365_day|all_leap|366_day|360_day|utc|tai)\)$'
+pattern = '^days since [0-9]{4}-[0-9]{1,2}-[0-9]{1,2}( [0-9]{2}:[0-9]{2}:[0-9]{2})?( \((gregorian|standard|proleptic_gregorian|julian|noleap|365_day|all_leap|366_day|360_day|utc|tai)\))?$'
 severity = "H"
 value_type = "str"
 is_required = false
@@ -234,13 +234,13 @@ cv_source_collection = "product"
 [global.attributes.realization_index]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
 severity = "H"
-value_type = "int"
+value_type = "str"
 is_required = true
 
 [global.attributes.realm]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
 severity = "H"
-value_type = "str"
+value_type = "str_array"
 is_required = true
 cv_source_collection = "realm"
 
@@ -332,14 +332,10 @@ severity = "H"
 
 [global.consistency.experiment_properties]
 # Check ATTR007 
-severity = "H"
+severity = "M"
 
 [global.consistency.institution_properties]
 # Check ATTR009 
-severity = "H"
-
-[global.consistency.source_properties]
-# Check ATTR010 
 severity = "H"
 
 [global.consistency.variant_properties]

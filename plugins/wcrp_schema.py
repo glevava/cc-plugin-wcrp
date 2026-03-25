@@ -32,7 +32,7 @@ class AttributeRule(BaseModel):
     severity: Optional[str] = None
     value_type: Optional[str] = None
     is_required: bool = True
-
+    na_value: Optional[Any] = None
     # Optional alias of attribute name as stored in netCDF (case sensitive in practice).
     attribute_name: Optional[str] = None
 
@@ -110,7 +110,7 @@ class FileFormatRule(BaseModel):
     model_config = ConfigDict(extra="forbid")
     severity: Optional[str] = None
     expected_format: Optional[str] = None
-    expected_data_model: Optional[str] = None
+    allowed_data_models: Optional[List[str]] = None
 
 
 class FileCompressionRule(BaseModel):

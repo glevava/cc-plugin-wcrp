@@ -15,7 +15,6 @@ def check_variable_type(ds, variable_name, allowed_types=None, severity=BaseChec
         allowed_types = ["f"]
 
     try:
-        # .kind renvoie 'f' (float), 'i' (int), 'S' (string), etc.
         dtype_kind = var.dtype.kind
     except AttributeError:
         ctx.add_failure(f"Could not determine dtype for variable '{variable_name}'.")

@@ -860,7 +860,7 @@ severity = "M"
 value_type = "str"
 is_required = true
 enum = [
-    "gregorian",
+    "standard",
     "proleptic_gregorian",
     "noleap",
     "365_day",
@@ -876,7 +876,7 @@ enum = [
 severity = "H"
 value_type = "str"
 is_required = true
-pattern = "^days since [0-9]{4}-[0-9]{1,2}-[0-9]{1,2}"
+pattern = '^days since [0-9]{4}-[0-9]{1,2}-[0-9]{1,2}( [0-9]{2}:[0-9]{2}:[0-9]{2})?$'
 
 [coordinates.time.attributes.bounds]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004

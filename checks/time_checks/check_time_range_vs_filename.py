@@ -101,7 +101,7 @@ def check_time_range_vs_filename(ds, severity=BaseCheck.MEDIUM):
     start_str, end_str, use_day_from_name = _extract_time_range_from_filename(filename)
 
     if not start_str or not end_str:
-        ctx.add_warning("No time range token found in filename; skipping VAR009.")
+        ctx.add_failure("No time range token found in filename; skipping VAR009.")
         return [ctx.to_result()]
 
     try:

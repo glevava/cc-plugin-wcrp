@@ -15,5 +15,6 @@ nav:
   - Reporting : reporting.md
   - Checks : checks.md
   - WCRP Project Plugins : wcrp_plugins.md
+  - Configuration : configuration.md
   - CF Plugin : cf_plugin.md
   - Credit : credits.md

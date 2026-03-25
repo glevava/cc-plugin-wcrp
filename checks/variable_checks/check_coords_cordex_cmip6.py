@@ -34,9 +34,15 @@ def check_lon_value_range(CheckerObject, severity=BaseCheck.MEDIUM):
         testctx.add_pass()
         return [testctx.to_result()]
 
+    # Get domain_id from global attributes
+    domain_id = CheckerObject._get_attr("domain_id", default="")
+
     # Check if longitude coordinates are strictly monotonically increasing
     if lon.ndim != 2:
         testctx.add_failure("The longitude coordinate should have two dimensions.")
+    elif domain_id.startswith('ARC') or domain_id.startswith('ANT'):
+        # The polar domains are exempt from monotony tests because they cross both the meridian and anti-meridian
+        testctx.add_pass()
     else:
         increasing_0 = ((lon[1:, :].data - lon[:-1, :].data) > 0).all()
         increasing_1 = ((lon[:, 1:].data - lon[:, :-1].data) > 0).all()
@@ -74,13 +80,13 @@ def check_lon_value_range(CheckerObject, severity=BaseCheck.MEDIUM):
         )
 
     # Check if longitude coordinates have absolute values as small as possible
-    abs = (lon > 180).any() and (xr.where(lon >= 180, lon - 360, lon) >= -180).all()
-    if not abs:
-        testctx.add_pass()
-    else:
+    # If values are monotonic increasing, only the case 180 <= lon [< 360] is problematic
+    if lon.min() >= 180:
         testctx.add_failure(
-            "Longitude values are required to take the smalles absolute value in the range [-180, 360]."
+            "Longitude values are required to take the smallest absolute value in the range [-180, 360]."
         )
+    else:
+        testctx.add_pass()
 
     return [testctx.to_result()]
 

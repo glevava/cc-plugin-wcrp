@@ -13,7 +13,6 @@ def check_dimension_positive(
     Check that the size (length) of a dimension is a positive integer.
     """
    
-    # Fixed Check Id
     check_id = "DIM002"
     
     description = f"[{check_id}] Positive Integer Size Check for Dimension '{dimension_name}'"

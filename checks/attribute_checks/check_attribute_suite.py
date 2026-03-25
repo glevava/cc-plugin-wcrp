@@ -62,6 +62,7 @@ def check_attribute_suite(
     severity: int,
     value_type: Optional[str] = None,
     is_required: bool = True,
+    na_value: Optional[Any] = None,
     pattern: Optional[str] = None,
     constant: Any = None,
     enum: Optional[Iterable[Any]] = None,
@@ -95,6 +96,11 @@ def check_attribute_suite(
 
       The ONLY allowed combination is:
         cv_source_collection + cv_source_collection_key
+
+    na_value behavior:
+      - if the attribute is missing -> normal ATTR001 logic
+      - if the attribute exists and its value equals na_value -> stop after ATTR001
+      - otherwise continue with normal validation
     """
 
     results = []
@@ -123,8 +129,6 @@ def check_attribute_suite(
     existence_ctx = TestCtx(severity, f"[ATTR001] {label} existence")
     try:
         attr_value = obj.getncattr(nc_key)
-        existence_ctx.add_pass()
-        results.append(existence_ctx.to_result())
     except AttributeError:
         if is_required:
             existence_ctx.add_failure(
@@ -132,6 +136,16 @@ def check_attribute_suite(
             )
             results.append(existence_ctx.to_result())
         return results  # stop here if missing
+
+    # -------------------------------------------------------------------------
+    # Short-circuit on sentinel / not-applicable value
+    # -------------------------------------------------------------------------
+    if na_value is not None:
+        if str(attr_value).strip().lower() == str(na_value).strip().lower():
+            return results
+
+    existence_ctx.add_pass()
+    results.append(existence_ctx.to_result())
 
     # -------------------------------------------------------------------------
     # ATTR002 - Type check
@@ -147,6 +161,8 @@ def check_attribute_suite(
             "str": str,
             "int": (int, np.integer),
             "float": (float, np.floating),
+            "double": np.float64,
+            "simple": np.float32,
             "bool": (bool, np.bool_),
             "str_array": list,
         }
@@ -310,22 +326,48 @@ def check_attribute_suite(
         invalid: list[Any] = []
 
         try:
-            # If a key is provided, do the direct get_term_in_collection (as requested).
-            # This checks that the collection contains that term_id key.
             if cv_source_collection_key:
-                term = voc.get_term_in_collection(
+                terms = voc.get_all_terms_in_collection(
                     project_id=project_name,
                     collection_id=cv_source_collection,
-                    term_id=cv_source_collection_key,
                 )
-                if not term:
+
+                if not terms:
                     ctx.add_failure(
-                        f"CV collection '{cv_source_collection}' has no term key '{cv_source_collection_key}'."
+                        f"CV collection '{cv_source_collection}' is empty or could not be retrieved."
                     )
                     results.append(ctx.to_result())
                     return results
 
-            # Then validate the actual attribute value against the collection
+                for val in values:
+                    found = False
+                    val_norm = " ".join(str(val).strip().lower().split())
+
+                    for term in terms:
+                        candidate = getattr(term, str(cv_source_collection_key), None)
+                        if candidate is None:
+                            continue
+
+                        candidate_norm = " ".join(str(candidate).strip().lower().split())
+
+                        if val_norm == candidate_norm or val_norm in candidate_norm:
+                            found = True
+                            break
+
+                    if not found:
+                        invalid.append(val)
+
+                if invalid:
+                    ctx.add_failure(
+                        f"Value(s) {invalid} not found in field '{cv_source_collection_key}' "
+                        f"of any term in CV collection '{cv_source_collection}'."
+                    )
+                else:
+                    ctx.add_pass()
+
+                results.append(ctx.to_result())
+                return results
+
             for val in values:
                 if not voc.valid_term_in_collection(
                     value=val,

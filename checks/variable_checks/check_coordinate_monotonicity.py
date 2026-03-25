@@ -38,7 +38,7 @@ def check_coordinate_monotonicity(
         return [ctx.to_result()]
 
     if arr.size < 2:
-        ctx.add_warning("Not enough values to test monotonicity.")
+        ctx.add_pass()
         return [ctx.to_result()]
 
     diffs = np.diff(arr)

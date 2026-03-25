@@ -13,14 +13,20 @@ $ pip install cc-plugin-wcrp
 ```
 See the [**IOOS/compliance-checker**](https://github.com/ioos/compliance-checker#installation) for additional Installation notes.
 
-And then install Esgvoc and universe to get the Controlled Vocabulary :
+And then install Esgvoc and the other projects to get the Controlled Vocabulary :
 
 ```shell
-$ esgvoc config set universe:branch=esgvoc_dev
 $ esgvoc config add cordex-cmip6
+$ esgvoc config add cmip7
 $ esgvoc install
 ```
+You should verify with `esgvoc config show` that all projects are on the `esgvoc` branch.
 
+If not, run:
+```bash
+esgvoc config set project:branch=esgvoc 
+esgvoc install
+```
 ## Usage
 
 ```shell

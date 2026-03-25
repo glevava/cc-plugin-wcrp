@@ -6,11 +6,7 @@ from compliance_checker.base import TestCtx
 from checks.utils import _get_drs_facets
 
 def _unwrap_facets(x):
-    """
-    Some implementations of checks.utils._get_drs_facets return tuples like:
-      (facets_dict, extra)
 
-    """
     if isinstance(x, tuple) and len(x) > 0 and isinstance(x[0], dict):
         return x[0]
     return x
@@ -24,13 +20,13 @@ _filename_template_keys_cmip6 = [
     "variant_label", "grid_label", "time_range",
 ]
 
-# CMIP7 directoryStructureDD (CMIP7 doc v1.0)
+# CMIP7 directoryStructure
 _dir_template_keys_cmip7 = [
     "drs_specs", "mip_era", "activity_id", "institution_id", "source_id",
     "experiment_id", "variant_label", "region", "frequency", "variable_id",
     "branding_suffix", "grid_label", "directory_date",
 ]
-# CMIP7 fileNameDD
+# CMIP7 fileName
 _filename_template_keys_cmip7 = [
     "variable_id", "branding_suffix", "frequency", "region", "grid_label",
     "source_id", "experiment_id", "variant_label", "time_range",
@@ -92,7 +88,7 @@ def check_attributes_match_directory_structure(
         return [ctx.to_result()]
 
     if _is_cmip7(ds, project_id):
-        # drs_specs is required to anchor the DRS in the filesystem
+        
         try:
             drs_specs = str(ds.getncattr("drs_specs"))
         except Exception:
