@@ -1,0 +1,5119 @@
+{
+  "wcrp_cmip7:1.0": {
+    "scored_points": 245,
+    "possible_points": 258,
+    "high_count": 10,
+    "medium_count": 3,
+    "low_count": 0,
+    "high_priorities": [
+      {
+        "name": "[ATTR001] Coordinate Variable 'lat' attribute 'axis' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'lat' attribute 'bounds' existence",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Required variable 'lat' attribute 'bounds' is missing."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'lat' attribute 'standard_name' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'lat' attribute 'units' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'lon' attribute 'axis' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'lon' attribute 'bounds' existence",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Required variable 'lon' attribute 'bounds' is missing."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'lon' attribute 'standard_name' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'lon' attribute 'units' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'time' attribute 'axis' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'time' attribute 'bounds' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'time' attribute 'standard_name' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'time' attribute 'units' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'Conventions' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'activity_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'area_label' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'branch_time_in_child' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'branch_time_in_parent' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'branded_variable' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'branding_suffix' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'data_specs_version' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'drs_specs' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'experiment_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'external_variables' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'forcing_index' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'frequency' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'grid_label' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'horizontal_label' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'initialization_index' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'institution_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'license_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'mip_era' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'nominal_resolution' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'parent_activity_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'parent_experiment_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'parent_mip_era' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'parent_source_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'parent_time_units' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'parent_variant_label' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'physics_index' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'product' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'realization_index' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'realm' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'region' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'source_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'temporal_label' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'tracking_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'variable_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'variant_label' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'vertical_label' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute '_FillValue' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute 'coordinates' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute 'missing_value' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute 'standard_name' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute 'units' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'lat' attribute 'axis' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'lat' attribute 'standard_name' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'lat' attribute 'units' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'lon' attribute 'axis' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'lon' attribute 'standard_name' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'lon' attribute 'units' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'time' attribute 'axis' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'time' attribute 'bounds' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'time' attribute 'standard_name' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'time' attribute 'units' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'Conventions' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'activity_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'area_label' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'branch_time_in_child' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'branch_time_in_parent' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'branded_variable' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'branding_suffix' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'data_specs_version' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'drs_specs' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'experiment_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'external_variables' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'forcing_index' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'frequency' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'grid_label' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'horizontal_label' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'initialization_index' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'institution_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'license_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'mip_era' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'nominal_resolution' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'parent_activity_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'parent_experiment_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'parent_mip_era' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'parent_source_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'parent_time_units' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'parent_variant_label' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'physics_index' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'product' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'realization_index' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'realm' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'region' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'source_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'temporal_label' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'tracking_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'variable_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'variant_label' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'vertical_label' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute '_FillValue' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute 'coordinates' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute 'missing_value' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute 'standard_name' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute 'units' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'lat' attribute 'axis' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'lat' attribute 'standard_name' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'lat' attribute 'units' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'lon' attribute 'axis' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'lon' attribute 'standard_name' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'lon' attribute 'units' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'time' attribute 'axis' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'time' attribute 'bounds' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'time' attribute 'standard_name' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'time' attribute 'units' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'Conventions' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'activity_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'area_label' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'branded_variable' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'branding_suffix' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'data_specs_version' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'drs_specs' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'experiment_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'external_variables' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'forcing_index' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'frequency' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'grid_label' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'horizontal_label' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'initialization_index' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'institution_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'license_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'mip_era' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'nominal_resolution' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'parent_activity_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'parent_experiment_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'parent_mip_era' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'parent_source_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'parent_time_units' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'parent_variant_label' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'physics_index' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'product' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'realization_index' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'realm' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'region' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'source_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'temporal_label' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'tracking_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'variable_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'variant_label' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'vertical_label' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Variable 'tasmax' attribute 'coordinates' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Variable 'tasmax' attribute 'standard_name' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Variable 'tasmax' attribute 'units' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'lat' attribute 'axis' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'lat' attribute 'standard_name' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'lat' attribute 'units' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'lon' attribute 'axis' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'lon' attribute 'standard_name' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'lon' attribute 'units' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'time' attribute 'axis' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'time' attribute 'bounds' as-variable check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'time' attribute 'standard_name' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'time' attribute 'units' pattern check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'Conventions' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'activity_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'area_label' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'branded_variable' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'branding_suffix' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'data_specs_version' vocabulary check",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Invalid value(s) ['MIP-DS7.0.0.0'] for CV collection 'data_specs_version'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'drs_specs' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'experiment_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'external_variables' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'frequency' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'grid_label' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'horizontal_label' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'institution_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'license_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Invalid value(s) ['CC-BY-4-0'] for CV collection 'license'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'mip_era' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'nominal_resolution' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'parent_activity_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'parent_experiment_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'parent_mip_era' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'parent_source_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'parent_time_units' pattern check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'parent_variant_label' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'product' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'realm' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'region' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'source_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'temporal_label' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'tracking_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Invalid value(s) ['hdl:21.14100/8f2ac87c-fddc-451b-907f-6cf0e5f2719f'] for CV collection 'tracking_id'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'variable_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Invalid value(s) ['tasmax'] for CV collection 'variable'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'variant_label' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'vertical_label' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute '_FillValue' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute 'coordinates' as-variable check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute 'missing_value' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute 'standard_name' registry expected-term check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute 'units' registry expected-term check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR005] Consistency: Filename vs Global Attributes",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR006] Consistency: variant_label vs index attributes",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR009] Consistency: institution_id vs institution attribute",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[DIM001] Dimension Existence: 'lat'",
+        "weight": 3,
+        "value": [
+          2,
+          2
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[DIM001] Dimension Existence: 'lon'",
+        "weight": 3,
+        "value": [
+          2,
+          2
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[DIM001] Dimension Existence: 'time'",
+        "weight": 3,
+        "value": [
+          2,
+          2
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[DIM002] Positive Integer Size Check for Dimension 'lat'",
+        "weight": 3,
+        "value": [
+          2,
+          2
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[DIM002] Positive Integer Size Check for Dimension 'lon'",
+        "weight": 3,
+        "value": [
+          2,
+          2
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[DIM002] Positive Integer Size Check for Dimension 'time'",
+        "weight": 3,
+        "value": [
+          2,
+          2
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[FILE001] DRS Directory Vocabulary Check",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "DRS project root 'cmip7' not found in the file path '/home/anachite/Bureau/adop/transfer_11984587_files_6f35b816/tasmax_tmaxavg-h2m-hxy-u_mon_glb_g101_CNRM-ESM2-1e_piControl_r1i1p1f1_185001-185012.nc'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[FILE001] DRS Filename Vocabulary Check",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Filename 'tasmax_tmaxavg-h2m-hxy-u_mon_glb_g101_CNRM-ESM2-1e_piControl_r1i1p1f1_185001-185012.nc' has validation errors: term 'tasmax' not compliant with variable at position 1"
+        ],
+        "children": []
+      },
+      {
+        "name": "[FILE002] File Format",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[PATH001] Consistency: Directory Structure vs Global Attributes",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Could not perform check. Reason: Directory path does not contain drs_specs 'MIP-DRS7'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[PATH002] Consistency: Directory Structure vs Filename",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Could not perform check. Reason: Directory path does not contain drs_specs 'MIP-DRS7'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[TIME001] Check Time Squareness ",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[TIME002] Check Time bounds",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[TIME003] Check Time Range vs Filename",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR001] Variable Existence: 'tasmax'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR004] Bounds for 'time'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR005] Coordinate monotonicity for 'lat'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR005] Coordinate monotonicity for 'lon'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR005] Coordinate monotonicity for 'time'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR005] Variable Type Check: 'lat'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR005] Variable Type Check: 'lon'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR005] Variable Type Check: 'tasmax'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR005] Variable Type Check: 'time'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR012] Bounds value consistency for 'time'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      }
+    ],
+    "medium_priorities": [
+      {
+        "name": "[ATTR001] Coordinate Variable 'time' attribute 'calendar' existence",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'experiment' existence",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'institution' existence",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute 'cell_measures' existence",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute 'cell_methods' existence",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute 'long_name' existence",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'time' attribute 'calendar' type",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'experiment' type",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'institution' type",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute 'cell_measures' type",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute 'cell_methods' type",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute 'long_name' type",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'time' attribute 'calendar' UTF-8 encoding",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'experiment' UTF-8 encoding",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'institution' UTF-8 encoding",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Variable 'tasmax' attribute 'cell_measures' UTF-8 encoding",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Variable 'tasmax' attribute 'cell_methods' UTF-8 encoding",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Variable 'tasmax' attribute 'long_name' UTF-8 encoding",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'time' attribute 'calendar' enum check",
+        "weight": 2,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Value 'gregorian' not in allowed values ['standard', 'proleptic_gregorian', 'noleap', '365_day', 'all_leap', '366_day', '360_day', 'utc', 'tai']."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'experiment' vocabulary check",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'institution' vocabulary check",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute 'cell_measures' registry expected-term check",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute 'cell_methods' registry expected-term check",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute 'long_name' registry expected-term check",
+        "weight": 2,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Registry has no value for key 'long_name'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR007] Consistency: experiment_id vs other global attributes",
+        "weight": 2,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Missing required global attribute: 'sub_experiment_id'."
+        ],
+        "children": []
+      }
+    ],
+    "low_priorities": [],
+    "all_priorities": [
+      {
+        "name": "[ATTR001] Coordinate Variable 'lat' attribute 'axis' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'lat' attribute 'bounds' existence",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Required variable 'lat' attribute 'bounds' is missing."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'lat' attribute 'standard_name' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'lat' attribute 'units' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'lon' attribute 'axis' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'lon' attribute 'bounds' existence",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Required variable 'lon' attribute 'bounds' is missing."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'lon' attribute 'standard_name' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'lon' attribute 'units' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'time' attribute 'axis' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'time' attribute 'bounds' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'time' attribute 'calendar' existence",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'time' attribute 'standard_name' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Coordinate Variable 'time' attribute 'units' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'Conventions' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'activity_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'area_label' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'branch_time_in_child' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'branch_time_in_parent' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'branded_variable' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'branding_suffix' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'data_specs_version' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'drs_specs' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'experiment' existence",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'experiment_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'external_variables' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'forcing_index' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'frequency' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'grid_label' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'horizontal_label' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'initialization_index' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'institution' existence",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'institution_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'license_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'mip_era' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'nominal_resolution' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'parent_activity_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'parent_experiment_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'parent_mip_era' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'parent_source_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'parent_time_units' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'parent_variant_label' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'physics_index' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'product' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'realization_index' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'realm' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'region' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'source_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'temporal_label' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'tracking_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'variable_id' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'variant_label' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Global attribute 'vertical_label' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute '_FillValue' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute 'cell_measures' existence",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute 'cell_methods' existence",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute 'coordinates' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute 'long_name' existence",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute 'missing_value' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute 'standard_name' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR001] Variable 'tasmax' attribute 'units' existence",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'lat' attribute 'axis' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'lat' attribute 'standard_name' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'lat' attribute 'units' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'lon' attribute 'axis' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'lon' attribute 'standard_name' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'lon' attribute 'units' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'time' attribute 'axis' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'time' attribute 'bounds' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'time' attribute 'calendar' type",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'time' attribute 'standard_name' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Coordinate Variable 'time' attribute 'units' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'Conventions' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'activity_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'area_label' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'branch_time_in_child' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'branch_time_in_parent' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'branded_variable' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'branding_suffix' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'data_specs_version' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'drs_specs' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'experiment' type",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'experiment_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'external_variables' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'forcing_index' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'frequency' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'grid_label' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'horizontal_label' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'initialization_index' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'institution' type",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'institution_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'license_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'mip_era' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'nominal_resolution' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'parent_activity_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'parent_experiment_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'parent_mip_era' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'parent_source_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'parent_time_units' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'parent_variant_label' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'physics_index' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'product' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'realization_index' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'realm' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'region' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'source_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'temporal_label' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'tracking_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'variable_id' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'variant_label' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Global attribute 'vertical_label' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute '_FillValue' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute 'cell_measures' type",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute 'cell_methods' type",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute 'coordinates' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute 'long_name' type",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute 'missing_value' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute 'standard_name' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR002] Variable 'tasmax' attribute 'units' type",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'lat' attribute 'axis' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'lat' attribute 'standard_name' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'lat' attribute 'units' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'lon' attribute 'axis' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'lon' attribute 'standard_name' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'lon' attribute 'units' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'time' attribute 'axis' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'time' attribute 'bounds' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'time' attribute 'calendar' UTF-8 encoding",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'time' attribute 'standard_name' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Coordinate Variable 'time' attribute 'units' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'Conventions' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'activity_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'area_label' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'branded_variable' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'branding_suffix' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'data_specs_version' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'drs_specs' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'experiment' UTF-8 encoding",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'experiment_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'external_variables' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'forcing_index' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'frequency' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'grid_label' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'horizontal_label' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'initialization_index' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'institution' UTF-8 encoding",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'institution_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'license_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'mip_era' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'nominal_resolution' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'parent_activity_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'parent_experiment_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'parent_mip_era' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'parent_source_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'parent_time_units' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'parent_variant_label' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'physics_index' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'product' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'realization_index' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'realm' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'region' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'source_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'temporal_label' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'tracking_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'variable_id' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'variant_label' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Global attribute 'vertical_label' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Variable 'tasmax' attribute 'cell_measures' UTF-8 encoding",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Variable 'tasmax' attribute 'cell_methods' UTF-8 encoding",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Variable 'tasmax' attribute 'coordinates' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Variable 'tasmax' attribute 'long_name' UTF-8 encoding",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Variable 'tasmax' attribute 'standard_name' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR003] Variable 'tasmax' attribute 'units' UTF-8 encoding",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'lat' attribute 'axis' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'lat' attribute 'standard_name' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'lat' attribute 'units' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'lon' attribute 'axis' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'lon' attribute 'standard_name' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'lon' attribute 'units' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'time' attribute 'axis' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'time' attribute 'bounds' as-variable check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'time' attribute 'calendar' enum check",
+        "weight": 2,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Value 'gregorian' not in allowed values ['standard', 'proleptic_gregorian', 'noleap', '365_day', 'all_leap', '366_day', '360_day', 'utc', 'tai']."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'time' attribute 'standard_name' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Coordinate Variable 'time' attribute 'units' pattern check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'Conventions' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'activity_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'area_label' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'branded_variable' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'branding_suffix' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'data_specs_version' vocabulary check",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Invalid value(s) ['MIP-DS7.0.0.0'] for CV collection 'data_specs_version'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'drs_specs' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'experiment' vocabulary check",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'experiment_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'external_variables' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'frequency' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'grid_label' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'horizontal_label' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'institution' vocabulary check",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'institution_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'license_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Invalid value(s) ['CC-BY-4-0'] for CV collection 'license'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'mip_era' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'nominal_resolution' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'parent_activity_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'parent_experiment_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'parent_mip_era' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'parent_source_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'parent_time_units' pattern check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'parent_variant_label' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'product' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'realm' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'region' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'source_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'temporal_label' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'tracking_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Invalid value(s) ['hdl:21.14100/8f2ac87c-fddc-451b-907f-6cf0e5f2719f'] for CV collection 'tracking_id'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'variable_id' vocabulary check",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Invalid value(s) ['tasmax'] for CV collection 'variable'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'variant_label' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Global attribute 'vertical_label' vocabulary check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute '_FillValue' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute 'cell_measures' registry expected-term check",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute 'cell_methods' registry expected-term check",
+        "weight": 2,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute 'coordinates' as-variable check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute 'long_name' registry expected-term check",
+        "weight": 2,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Registry has no value for key 'long_name'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute 'missing_value' constant check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute 'standard_name' registry expected-term check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR004] Variable 'tasmax' attribute 'units' registry expected-term check",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR005] Consistency: Filename vs Global Attributes",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR006] Consistency: variant_label vs index attributes",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[ATTR007] Consistency: experiment_id vs other global attributes",
+        "weight": 2,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Missing required global attribute: 'sub_experiment_id'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[ATTR009] Consistency: institution_id vs institution attribute",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[DIM001] Dimension Existence: 'lat'",
+        "weight": 3,
+        "value": [
+          2,
+          2
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[DIM001] Dimension Existence: 'lon'",
+        "weight": 3,
+        "value": [
+          2,
+          2
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[DIM001] Dimension Existence: 'time'",
+        "weight": 3,
+        "value": [
+          2,
+          2
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[DIM002] Positive Integer Size Check for Dimension 'lat'",
+        "weight": 3,
+        "value": [
+          2,
+          2
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[DIM002] Positive Integer Size Check for Dimension 'lon'",
+        "weight": 3,
+        "value": [
+          2,
+          2
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[DIM002] Positive Integer Size Check for Dimension 'time'",
+        "weight": 3,
+        "value": [
+          2,
+          2
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[FILE001] DRS Directory Vocabulary Check",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "DRS project root 'cmip7' not found in the file path '/home/anachite/Bureau/adop/transfer_11984587_files_6f35b816/tasmax_tmaxavg-h2m-hxy-u_mon_glb_g101_CNRM-ESM2-1e_piControl_r1i1p1f1_185001-185012.nc'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[FILE001] DRS Filename Vocabulary Check",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Filename 'tasmax_tmaxavg-h2m-hxy-u_mon_glb_g101_CNRM-ESM2-1e_piControl_r1i1p1f1_185001-185012.nc' has validation errors: term 'tasmax' not compliant with variable at position 1"
+        ],
+        "children": []
+      },
+      {
+        "name": "[FILE002] File Format",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[PATH001] Consistency: Directory Structure vs Global Attributes",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Could not perform check. Reason: Directory path does not contain drs_specs 'MIP-DRS7'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[PATH002] Consistency: Directory Structure vs Filename",
+        "weight": 3,
+        "value": [
+          0,
+          1
+        ],
+        "msgs": [
+          "Could not perform check. Reason: Directory path does not contain drs_specs 'MIP-DRS7'."
+        ],
+        "children": []
+      },
+      {
+        "name": "[TIME001] Check Time Squareness ",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[TIME002] Check Time bounds",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[TIME003] Check Time Range vs Filename",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR001] Variable Existence: 'tasmax'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR004] Bounds for 'time'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR005] Coordinate monotonicity for 'lat'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR005] Coordinate monotonicity for 'lon'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR005] Coordinate monotonicity for 'time'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR005] Variable Type Check: 'lat'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR005] Variable Type Check: 'lon'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR005] Variable Type Check: 'tasmax'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR005] Variable Type Check: 'time'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      },
+      {
+        "name": "[VAR012] Bounds value consistency for 'time'",
+        "weight": 3,
+        "value": [
+          1,
+          1
+        ],
+        "msgs": [],
+        "children": []
+      }
+    ],
+    "testname": "wcrp_cmip7:1.0",
+    "source_name": "/home/anachite/Bureau/adop/transfer_11984587_files_6f35b816/tasmax_tmaxavg-h2m-hxy-u_mon_glb_g101_CNRM-ESM2-1e_piControl_r1i1p1f1_185001-185012.nc",
+    "scoreheader": {
+      "3": "Mandatory",
+      "2": "Warning",
+      "1": "Optional"
+    },
+    "cc_spec_version": "1.0",
+    "cc_url": "",
+    "report_timestamp": "2026-03-25T14:07:52Z",
+    "cc_version": "5.4.2"
+  }
+}
