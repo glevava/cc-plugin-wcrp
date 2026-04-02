@@ -210,7 +210,7 @@ class CordexCmip6ProjectCheck(WCRPBaseCheck):
                 check_format(
                     ds=ds,
                     expected_format=check_config.get("expected_format"),
-                    expected_data_model=check_config.get("expected_data_model"),
+                    allowed_data_models=check_config.get("allowed_data_models"),
                     severity=self.get_severity(check_config.get("severity")),
                 )
             )

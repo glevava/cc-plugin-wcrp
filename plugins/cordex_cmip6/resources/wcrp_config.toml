@@ -10,8 +10,8 @@ project_version = "1.0"
 [format_checks.check_format]
 severity = "H"
 expected_format = "HDF5"
-expected_data_model = "NETCDF4_CLASSIC"
-#expected_data_model = "NETCDF4"
+allowed_data_models = ["NETCDF4_CLASSIC"]
+#allowed_data_models = ["NETCDF4", "NETCDF4_CLASSIC"]
 
 [format_checks.check_compression]
 severity = "M"
