@@ -12,7 +12,7 @@ import toml
 import traceback
 from netCDF4 import Dataset
 from compliance_checker.base import BaseCheck, TestCtx
-
+from types import SimpleNamespace
 from plugins.wcrp_base import WCRPBaseCheck
 from plugins.wcrp_schema import WCRPConfig
 
@@ -60,7 +60,7 @@ from checks.dimension_checks.check_dimension_existence import check_dimension_ex
 from checks.dimension_checks.check_dimension_positive import check_dimension_positive
 
 from checks.time_checks.check_time_squareness import check_time_squareness
-import checks.time_checks.check_time_squareness as time_squareness_mod  # for FREQ_INC injection
+import checks.time_checks.check_time_squareness as time_squareness_mod  
 from checks.time_checks.check_time_bounds import check_time_bounds
 
 from checks.variable_checks.check_coordinate_monotonicity import (
@@ -71,7 +71,6 @@ from checks.variable_checks.check_variable_shape_vs_dimensions import (
     check_variable_shape,
 )
 
-# Optional bounds value consistency
 try:
     from checks.variable_checks.check_bounds_value_consistency import (
         check_bounds_value_consistency,
@@ -117,7 +116,7 @@ def _load_toml(path: str) -> dict:
 class Cmip6ProjectCheck(WCRPBaseCheck):
     _cc_spec = "wcrp_cmip6"
     _cc_spec_version = "1.0"
-    _cc_description = "WCRP CMIP6 Project Checks"
+    _cc_description = "WCRP CMIP6 Project PLugin"
     supported_ds = [Dataset]
 
     def __init__(self, options=None):
@@ -268,7 +267,7 @@ class Cmip6ProjectCheck(WCRPBaseCheck):
             table_id = ds.getncattr("table_id")
         except Exception as e:
             ctx = TestCtx(severity, "Variable Registry")
-            ctx.add_failure(f"Missing required attrs for registry lookup: {e}")
+            ctx.add_failure(f"Missing required attributes for registry lookup: {e}")
             results.append(ctx.to_result())
             return None, results
 
@@ -277,47 +276,91 @@ class Cmip6ProjectCheck(WCRPBaseCheck):
         if not branded:
             ctx = TestCtx(severity, "Variable Registry")
             ctx.add_failure(
-                f"No mapping found for '{map_key}' in variable_id_to_branded_variable.toml"
+                f"No branded variable mapping found for '{map_key}' in variable_id_to_branded_variable.toml."
             )
             results.append(ctx.to_result())
             return None, results
 
-        fields_to_get = [
-            "cf_standard_name",
-            "cf_units",
-            "dimensions",
-            "cell_methods",
-            "cell_measures",
-            "description",
-            "long_name",
-        ]
+        expected_kbv = None
+        expected_var = None
 
-        expected = None
+        # 1) known_branded_variable lookup
         try:
-            terms = find_terms_in_data_descriptor(
+            kbv_terms = find_terms_in_data_descriptor(
                 expression=str(branded),
                 data_descriptor_id="known_branded_variable",
                 only_id=True,
-                selected_term_fields=fields_to_get,
+                selected_term_fields=[
+                    "cf_standard_name",
+                    "cf_units",
+                    "dimensions",
+                    "cell_methods",
+                    "cell_measures",
+                    "description",
+                ],
             )
-            if terms:
-                expected = terms[0]
+            if kbv_terms:
+                expected_kbv = kbv_terms[0]
         except Exception as e:
             ctx = TestCtx(severity, "Variable Registry")
-            ctx.add_failure(f"Registry lookup error for '{branded}': {e}")
+            ctx.add_failure(
+                f"Registry lookup error for known_branded_variable '{branded}': {e}"
+            )
             results.append(ctx.to_result())
             return None, results
 
-        if not expected:
+        if not expected_kbv:
             ctx = TestCtx(severity, "Variable Registry")
-            ctx.add_failure(f"Term '{branded}' not found in registry.")
+            ctx.add_failure(
+                f"Known branded variable '{branded}' was not found in the registry."
+            )
             results.append(ctx.to_result())
             return None, results
+
+        # 2) variable lookup for long_name only
+        try:
+            var_id_lower = str(variable_id).lower()
+            var_terms = find_terms_in_data_descriptor(
+                expression=var_id_lower,
+                data_descriptor_id="variable",
+                selected_term_fields=["long_name"],
+            )
+            
+            if var_terms:
+                for term in var_terms:
+                    if getattr(term, "id", None) == var_id_lower :
+                        expected_var = term
+                        break
+        except Exception as e:
+            ctx = TestCtx(severity, "Variable Registry")
+            ctx.add_failure(
+                f"Registry lookup error for variable '{variable_id}': {e}"
+            )
+            results.append(ctx.to_result())
+            return None, results
+
+        if not expected_var:
+            ctx = TestCtx(severity, "Variable Registry")
+            ctx.add_failure(
+                f"Variable '{variable_id}' was not found in the registry data descriptor 'variable'. "
+                "Only 'long_name' may be unavailable."
+            )
+            results.append(ctx.to_result())
+
+        merged = {
+            "cf_standard_name": getattr(expected_kbv, "cf_standard_name", None),
+            "cf_units": getattr(expected_kbv, "cf_units", None),
+            "dimensions": getattr(expected_kbv, "dimensions", None),
+            "cell_methods": getattr(expected_kbv, "cell_methods", None),
+            "cell_measures": getattr(expected_kbv, "cell_measures", None),
+            "description": getattr(expected_kbv, "description", None),
+            "long_name": getattr(expected_var, "long_name", None) if expected_var else None,
+        }
+
+        expected = SimpleNamespace(**merged)
 
         self._expected_term_cache = expected
         return expected, results
-
-
     # -------------------------------------------------------------------------
     # 1) File checks
     # -------------------------------------------------------------------------
@@ -326,7 +369,7 @@ class Cmip6ProjectCheck(WCRPBaseCheck):
             return []
         r = self.config.file.format
         sev = self.get_severity(r.severity)
-        return check_format(ds, r.expected_format, r.expected_data_model, sev)
+        return check_format(ds, r.expected_format, r.allowed_data_models, sev)
 
     def check_File_Compression(self, ds):
         if not self.config or not self.config.file or not self.config.file.compression:
@@ -359,6 +402,7 @@ class Cmip6ProjectCheck(WCRPBaseCheck):
                     severity=sev,
                     value_type=rule.value_type,
                     is_required=rule.is_required,
+                    na_value=rule.na_value,
                     pattern=rule.pattern,
                     constant=rule.constant,
                     enum=rule.enum,
@@ -471,6 +515,7 @@ class Cmip6ProjectCheck(WCRPBaseCheck):
                     severity=sev,
                     value_type=rule.value_type,
                     is_required=rule.is_required,
+                    na_value=rule.na_value,
                     pattern=rule.pattern,
                     constant=rule.constant,
                     enum=rule.enum,
@@ -707,6 +752,7 @@ class Cmip6ProjectCheck(WCRPBaseCheck):
                         severity=sev,
                         value_type=arule.value_type,
                         is_required=arule.is_required,
+                        na_value=arule.na_value,
                         pattern=arule.pattern,
                         constant=arule.constant,
                         enum=arule.enum,

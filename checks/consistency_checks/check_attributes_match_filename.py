@@ -6,7 +6,7 @@ from compliance_checker.base import TestCtx
 
 from checks.utils import _parse_filename_components
 
-# CMIP6: time_range exists in filename, not a GA => parse but don't compare
+# CMIP6
 _FILENAME_KEYS_CMIP6_PARSE = [
     "variable_id",
     "table_id",
@@ -25,7 +25,7 @@ _FILENAME_KEYS_CMIP6_COMPARE = [
     "grid_label",
 ]
 
-# CMIP7: time_range exists in filename, not a GA => parse but don't compare
+# CMIP7
 _FILENAME_KEYS_CMIP7_PARSE = [
     "variable_id",
     "branding_suffix",
@@ -120,18 +120,7 @@ def _parse_cordex_cmip6_filename(filename: str):
 
 
 def _unwrap_facets(maybe_tuple):
-    """
-    In this repo, checks.utils._parse_filename_components may return:
-      - dict
-      - None
-      - (dict, extra)  <-- this is what broke CMIP6
-    We only need the dict.
-    """
-    if (
-        isinstance(maybe_tuple, tuple)
-        and len(maybe_tuple) > 0
-        and isinstance(maybe_tuple[0], dict)
-    ):
+    if isinstance(maybe_tuple, tuple) and len(maybe_tuple) > 0 and isinstance(maybe_tuple[0], dict):
         return maybe_tuple[0]
     return maybe_tuple
 
@@ -145,7 +134,6 @@ def check_filename_vs_global_attrs(
     Important:
     - time_range is NOT a global attribute in CMIP6 or CMIP7.
       It's parsed from filename but not compared here.
-      (Your VAR009 handles time-range vs data.)
     """
     fixed_check_id = "ATTR005"
     description = f"[{fixed_check_id}] Consistency: Filename vs Global Attributes"
@@ -158,7 +146,7 @@ def check_filename_vs_global_attrs(
 
     filename = os.path.basename(filepath)
 
-    # ---------------- CMIP7 branch ----------------
+    # ---------------- CMIP7 ----------------
     if project_id == "cmip7":
         facets = _parse_cmip7_filename(filename)
         if facets is None:
@@ -167,7 +155,7 @@ def check_filename_vs_global_attrs(
             )
             return [ctx.to_result()]
         compare_keys = _FILENAME_KEYS_CMIP7_COMPARE
-    # ---------------- CORDEX-CMIP6 branch ----------------
+    # ---------------- CORDEX-CMIP6 ----------------
     elif project_id == "cordex-cmip6":
         facets = _parse_cordex_cmip6_filename(filename)
         if facets is None:
@@ -176,7 +164,7 @@ def check_filename_vs_global_attrs(
             )
             return [ctx.to_result()]
         compare_keys = _FILENAME_KEYS_CORDEX_CMIP6_COMPARE
-    # ---------------- CMIP6 (default) branch ----------------
+    # ---------------- CMIP6 ----------------
     elif project_id == "cmip6":
         parse_keys = filename_template_keys or _FILENAME_KEYS_CMIP6_PARSE
         facets = _parse_filename_components(filename, parse_keys)

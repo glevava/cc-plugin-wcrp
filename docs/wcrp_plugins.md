@@ -29,7 +29,7 @@ Each plugin has its own **TOML configuration file** defining specific rules, sev
 
 Each WCRP plugin:
 
-**Loads its configuration file** (`wcrp_cmip6.toml` / `wcrp_cordex_cmip6.toml` / `wcrp_cmip6.toml`/ `wcrp_data.toml`), which defines:
+**Loads its configuration file(s)**, which defines:
 
  - Which checks to run (DRS, attributes, time, metadata, etc.)
  - The severity of each check (High = Mandatory, Medium = Recommended, Low = Warning)
@@ -43,22 +43,16 @@ Each WCRP plugin:
 
 ---
 
-## TOML Configuration Files
+## Configuration
 
-Each plugin is driven by its own TOML file:
+WCRP plugins are driven by TOML configuration files. CMIP6/CMIP7 currently use a **split-TOML** layout, while CORDEX-CMIP6 and the Data plugin still rely on a **single TOML** file (legacy layout).
 
-- **`wcrp_cmip6.toml`**  / **`wcrp_cmip7.toml`** 
-  Main configuration for CMIP6/CMIP7 checks, mapping variables, severities, and project rules.
+For a full description of the TOML tree, naming conventions, and the underlying configuration model, see: **Configuration** (`configuration.md`).
 
-- **`wcrp_cordex_cmip6.toml`**  
-  Adapted version for CORDEX-CMIP6)context.
+### Current status by plugin
 
-- **`wcrp_data.toml`**  
-  Adapted version for Data checks.  
-
-- **`mapping_variables.toml`**  
-  Helper file mapping `<table_id>.<variable_id>` to standard variable definitions  
-  (dimensions, expected attributes, cell methods, etc.).  
-  This is a **temporary bridge** for CMIP6 until the official ESGVOC vocabulary exposes all required metadata.
-
----
+- **CMIP6 (`wcrp_cmip6`)**: uses the split-TOML layout under `plugins/cmip6/config/wcrp/` (plus `mappings/`).
+- **CMIP7 (`wcrp_cmip7`)**: uses the split-TOML layout under `plugins/cmip7/config/wcrp/`.
+- **CORDEX-CMIP6 (`wcrp_cordex_cmip6`)**: *for now* uses the legacy single-file configuration (e.g. `wcrp_config.toml` + `mapping_variables.toml`).  
+  This will be migrated to the same split-TOML structure as CMIP6/CMIP7.
+- **Data plugin (`wcrp_data`)**: kept as a **single TOML** configuration for now (data plausibility focused), to remain lightweight and independent from project-specific split trees.

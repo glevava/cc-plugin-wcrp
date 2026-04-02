@@ -89,14 +89,7 @@ cv_source_collection_key = "description"
 severity = "L"
 value_type = "str"
 is_required = false
-pattern = ".*"
-
-[global.attributes.license_id]
-# Checks ATTR001 ATTR002 ATTR003 ATTR004
-severity = "H"
-value_type = "str"
-is_required = true
-cv_source_collection = "license_id"
+pattern = "^CMIP6 model data produced by .* is licensed under a Creative Commons Attribution 4\\.0 International License (https://creativecommons\\.org/licenses/by/4\\.0/)\\. *Consult https://pcmdi\\.llnl\\.gov/CMIP6/TermsOfUse for terms of use governing CMIP6 output, including citation requirements and proper acknowledgment\\. *Further information about this data, including some limitations, can be found via the further_info_url (recorded as a global attribute in this file).*\\. *The data producers and data providers make no warranty, either express or implied, including, but not limited to, warranties of merchantability and fitness for a particular purpose\\. *All liabilities arising from the supply of the information (including any liability arising in negligence) are excluded to the fullest extent permitted by law\\.$"
 
 [global.attributes.nominal_resolution]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
@@ -177,7 +170,8 @@ cv_source_collection = "product"
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
 severity = "M"
 value_type = "str"
-is_required = true
+is_required = false
+na_value = "no parent"
 pattern = ".*"
 
 [global.attributes.branch_time]
@@ -207,7 +201,7 @@ is_required = true
 [global.attributes.realm]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
 severity = "H"
-value_type = "str"
+value_type = "str_array"
 is_required = true
 cv_source_collection = "realm"
 
@@ -222,7 +216,8 @@ pattern = ".*"
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
 severity = "M"
 value_type = "str"
-is_required = true
+is_required = false
+na_value = "none"
 cv_source_collection = "experiment_id"
 
 [global.attributes.sub_experiment]
@@ -230,6 +225,7 @@ cv_source_collection = "experiment_id"
 severity = "M"
 value_type = "str"
 is_required = false
+na_value = "none"
 cv_source_collection = "experiment_id"
 cv_source_collection_key = "description"
 
@@ -238,6 +234,7 @@ cv_source_collection_key = "description"
 severity = "H"
 value_type = "str"
 is_required = false
+na_value = "no parent"
 cv_source_collection = "activity_id"
 
 [global.attributes.parent_experiment_id]
@@ -245,6 +242,7 @@ cv_source_collection = "activity_id"
 severity = "H"
 value_type = "str"
 is_required = false
+na_value = "no parent"
 cv_source_collection = "experiment_id"
 
 [global.attributes.parent_mip_era]
@@ -252,6 +250,7 @@ cv_source_collection = "experiment_id"
 severity = "H"
 value_type = "str"
 is_required = false
+na_value = "no parent"
 cv_source_collection = "mip_era"
 
 [global.attributes.parent_source_id]
@@ -259,6 +258,7 @@ cv_source_collection = "mip_era"
 severity = "H"
 value_type = "str"
 is_required = false
+na_value = "no parent"
 cv_source_collection = "source_id"
 
 [global.attributes.parent_time_units]
@@ -266,7 +266,8 @@ cv_source_collection = "source_id"
 severity = "H"
 value_type = "str"
 is_required = false
-pattern = "^days since [0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$"
+na_value = "no parent"
+pattern = '^days since [0-9]{4}-[0-9]{1,2}-[0-9]{1,2}( [0-9]{2}:[0-9]{2}:[0-9]{2})?$'
 
 [global.attributes.parent_variant_label]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
@@ -279,7 +280,7 @@ cv_source_collection = "variant_label"
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
 attribute_name = "Conventions"
 severity = "H"
-value_type = "str"
+value_type = "str_array"
 is_required = true
 cv_source_collection = "conventions"
 
@@ -312,7 +313,7 @@ pattern = ".*"
 [global.attributes.source_type]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004
 severity = "M"
-value_type = "str"
+value_type = "str_array"
 is_required = true
 cv_source_collection = "source_type"
 
@@ -333,7 +334,7 @@ severity = "H"
 
 [global.consistency.experiment_properties]
 # Checks ATTR007 
-severity = "H"
+severity = "M"
 
 [global.consistency.institution_properties]
 # Checks ATTR009 

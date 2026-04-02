@@ -2,13 +2,44 @@
 
 from compliance_checker.base import TestCtx
 
-# Import the esgvoc library, handling the case where it is not installed
 try:
     import esgvoc.api as voc
-
     ESG_VOCAB_AVAILABLE = True
 except ImportError:
     ESG_VOCAB_AVAILABLE = False
+
+
+# ============================================================================
+# Mapping visible: NetCDF attribute names stay the same.
+# Only the ESGVOC collection name changes between CMIP6 and CMIP7.
+# ============================================================================
+CV_COLLECTION_MAP = {
+    "cmip6": {
+        "institution_id": "institution_id",
+        "source_id": "source_id",
+    },
+    "cmip7": {
+        "institution_id": "organisation",
+        "source_id": "source",
+    },
+}
+
+
+def _get_cv_collection(project_id, attribute_name):
+    project_key = str(project_id).strip().lower()
+    return CV_COLLECTION_MAP.get(project_key, {}).get(attribute_name, attribute_name)
+
+
+def _as_list(value):
+    if value is None:
+        return []
+    if isinstance(value, (list, tuple, set)):
+        return list(value)
+    return [value]
+
+
+def _lower_str_list(values):
+    return [str(v).strip().lower() for v in _as_list(values) if v is not None]
 
 
 def check_institution_consistency(ds, severity, project_id="cmip6"):
@@ -17,9 +48,7 @@ def check_institution_consistency(ds, severity, project_id="cmip6"):
     'description' from the ESGF CV for the given 'institution_id'.
     """
     fixed_check_id = "ATTR009"
-    description = (
-        f"[{fixed_check_id}] Consistency: institution_id vs institution attribute"
-    )
+    description = f"[{fixed_check_id}] Consistency: institution_id vs institution attribute"
     ctx = TestCtx(severity, description)
 
     if not ESG_VOCAB_AVAILABLE:
@@ -28,15 +57,26 @@ def check_institution_consistency(ds, severity, project_id="cmip6"):
 
     try:
         # Read attributes from the NetCDF file
-        institution_id = str(ds.getncattr("institution_id"))
-        actual_institution = str(ds.getncattr("institution"))
+        institution_id = str(ds.getncattr("institution_id")).strip()
+        actual_institution = str(ds.getncattr("institution")).strip()
 
-        # Query esgvoc to get the reference specifications for the institution_id
+        # Resolve project-specific ESGVOC collection
+        collection_id = _get_cv_collection(project_id, "institution_id")
+
+        # Query esgvoc with the file value as-is
         reference_term = voc.get_term_in_collection(
             project_id=project_id,
-            collection_id="institution_id",
-            term_id=institution_id.lower(),
+            collection_id=collection_id,
+            term_id=institution_id,
         )
+
+        # Fallback on lowercase because some vocabularies may normalize ids
+        if not reference_term:
+            reference_term = voc.get_term_in_collection(
+                project_id=project_id,
+                collection_id=collection_id,
+                term_id=institution_id.lower(),
+            )
 
         if not reference_term:
             ctx.add_failure(
@@ -44,10 +84,10 @@ def check_institution_consistency(ds, severity, project_id="cmip6"):
             )
             return [ctx.to_result()]
 
-        # Compare the 'institution' attribute with the 'description' from the CV
+        # Compare the file's 'institution' attribute with the CV description
         expected_description = getattr(reference_term, "description", None)
 
-        if expected_description and actual_institution == expected_description:
+        if expected_description and actual_institution == str(expected_description).strip():
             ctx.add_pass()
         else:
             msg = (
@@ -81,14 +121,27 @@ def check_source_consistency(ds, severity, project_id="cmip6"):
         return [ctx.to_result()]
 
     try:
-        #  Read attributes from the NetCDF file
-        source_id = str(ds.getncattr("source_id"))
-        actual_institution_id = str(ds.getncattr("institution_id"))
+        # Read attributes from the NetCDF file
+        source_id = str(ds.getncattr("source_id")).strip()
+        actual_institution_id = str(ds.getncattr("institution_id")).strip()
 
-        # Query esgvoc to get the reference specifications for the source_id
+        # Resolve project-specific ESGVOC collection
+        collection_id = _get_cv_collection(project_id, "source_id")
+
+        # Query esgvoc with the file value as-is
         reference_term = voc.get_term_in_collection(
-            project_id=project_id, collection_id="source_id", term_id=source_id.lower()
+            project_id=project_id,
+            collection_id=collection_id,
+            term_id=source_id,
         )
+
+        # Fallback on lowercase because some vocabularies may normalize ids
+        if not reference_term:
+            reference_term = voc.get_term_in_collection(
+                project_id=project_id,
+                collection_id=collection_id,
+                term_id=source_id.lower(),
+            )
 
         if not reference_term:
             ctx.add_failure(
@@ -96,19 +149,15 @@ def check_source_consistency(ds, severity, project_id="cmip6"):
             )
             return [ctx.to_result()]
 
-        #  Compare the file's 'institution_id' with the 'organisation_id' from the CV
-
+        # Compare the file's institution_id with the organisation_id from the CV
         expected_org_ids = getattr(reference_term, "organisation_id", [])
 
-        if actual_institution_id.lower() in [
-            org_id.lower() for org_id in expected_org_ids
-        ]:
+        if actual_institution_id.lower() in _lower_str_list(expected_org_ids):
             ctx.add_pass()
-
         else:
             msg = (
                 f"Inconsistency for 'institution_id'. For the source_id '{source_id}', "
-                f"the CV expects one of {expected_org_ids}, "
+                f"the CV expects one of {list(_as_list(expected_org_ids))}, "
                 f"but the file has '{actual_institution_id}'."
             )
             ctx.add_failure(msg)
