@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 import os
+
 from compliance_checker.base import TestCtx
+
 from checks.utils import _parse_filename_components
 
 # CMIP6
@@ -46,12 +48,30 @@ _FILENAME_KEYS_CMIP7_COMPARE = [
     "variant_label",
 ]
 
-
-def _is_cmip7(ds) -> bool:
-    try:
-        return str(ds.getncattr("mip_era")).upper() == "CMIP7"
-    except Exception:
-        return False
+# CORDEX-CMIP6: time_range exists in filename, not a GA => parse but don't compare
+_FILENAME_KEYS_CORDEX_CMIP6_PARSE = [
+    "variable_id",
+    "domain_id",
+    "driving_source_id",
+    "driving_experiment_id",
+    "driving_variant_label",
+    "institution_id",
+    "source_id",
+    "version_realization",
+    "frequency",
+    "time_range",
+]
+_FILENAME_KEYS_CORDEX_CMIP6_COMPARE = [
+    "variable_id",
+    "domain_id",
+    "driving_source_id",
+    "driving_experiment_id",
+    "driving_variant_label",
+    "institution_id",
+    "source_id",
+    "version_realization",
+    "frequency",
+]
 
 
 def _parse_cmip7_filename(filename: str):
@@ -76,13 +96,38 @@ def _parse_cmip7_filename(filename: str):
     }
 
 
+def _parse_cordex_cmip6_filename(filename: str):
+    """
+    CORDEX-CMIP6 filename (Archive Specifications v2):
+      <variable_id><domain_id><driving_source_id><driving_experiment_id><driving_variant_label><institution_id><source_id><version_realization><frequency>
+    """
+    stem = filename[:-3] if filename.endswith(".nc") else filename
+    parts = stem.split("_")
+    if len(parts) not in (9, 10):
+        return None
+    return {
+        "variable_id": parts[0],
+        "domain_id": parts[1],
+        "driving_source_id": parts[2],
+        "driving_experiment_id": parts[3],
+        "driving_variant_label": parts[4],
+        "institution_id": parts[5],
+        "source_id": parts[6],
+        "version_realization": parts[7],
+        "frequency": parts[8],
+        "time_range": parts[9] if len(parts) == 10 else None,
+    }
+
+
 def _unwrap_facets(maybe_tuple):
     if isinstance(maybe_tuple, tuple) and len(maybe_tuple) > 0 and isinstance(maybe_tuple[0], dict):
         return maybe_tuple[0]
     return maybe_tuple
 
 
-def check_filename_vs_global_attrs(ds, severity, filename_template_keys=None):
+def check_filename_vs_global_attrs(
+    ds, severity, project_id="cmip6", filename_template_keys=None
+):
     """
     [ATTR005] Consistency: Filename vs Global Attributes
 
@@ -101,8 +146,8 @@ def check_filename_vs_global_attrs(ds, severity, filename_template_keys=None):
 
     filename = os.path.basename(filepath)
 
-    # ---------------- CMIP7----------------
-    if _is_cmip7(ds):
+    # ---------------- CMIP7 ----------------
+    if project_id == "cmip7":
         facets = _parse_cmip7_filename(filename)
         if facets is None:
             ctx.add_failure(
@@ -110,9 +155,17 @@ def check_filename_vs_global_attrs(ds, severity, filename_template_keys=None):
             )
             return [ctx.to_result()]
         compare_keys = _FILENAME_KEYS_CMIP7_COMPARE
-
+    # ---------------- CORDEX-CMIP6 ----------------
+    elif project_id == "cordex-cmip6":
+        facets = _parse_cordex_cmip6_filename(filename)
+        if facets is None:
+            ctx.add_failure(
+                f"Could not perform check. Reason: Filename '{filename}' does not match expected CORDEX-CMIP6 token count (9 or 10 with time_range)."
+            )
+            return [ctx.to_result()]
+        compare_keys = _FILENAME_KEYS_CORDEX_CMIP6_COMPARE
     # ---------------- CMIP6 ----------------
-    else:
+    elif project_id == "cmip6":
         parse_keys = filename_template_keys or _FILENAME_KEYS_CMIP6_PARSE
         facets = _parse_filename_components(filename, parse_keys)
         facets = _unwrap_facets(facets)  # <-- FIX: tuple -> dict
@@ -123,6 +176,11 @@ def check_filename_vs_global_attrs(ds, severity, filename_template_keys=None):
             )
             return [ctx.to_result()]
         compare_keys = _FILENAME_KEYS_CMIP6_COMPARE
+    else:
+        ctx.add_failure(
+            f"Could not perform check. Reason: Unknown project '{project_id}'."
+        )
+        return [ctx.to_result()]
 
     # ---------------- Compare tokens to global attributes ----------------
     failures = []
@@ -135,7 +193,9 @@ def check_filename_vs_global_attrs(ds, severity, filename_template_keys=None):
                     f"Filename component '{key}' ('{file_value}') does not match global attribute ('{attr_value}')."
                 )
         else:
-            ctx.messages.append(f"Global attribute '{key}' not found, skipping comparison.")
+            ctx.messages.append(
+                f"Global attribute '{key}' not found, skipping comparison."
+            )
 
     for f in failures:
         ctx.add_failure(f)

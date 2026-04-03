@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 
 import os
+
 from compliance_checker.base import BaseCheck, TestCtx
+
 from checks.utils import _compare_CV, _find_drs_directory_and_filename
 
 try:
     from esgvoc.apps.drs.validator import DrsValidator
+
     ESG_VOCAB_AVAILABLE = True
 except ImportError:
     ESG_VOCAB_AVAILABLE = False
@@ -52,7 +55,9 @@ def check_drs_filename(ds, severity, project_id="cmip6"):
 
         if file_report.errors:
             error_details = "; ".join(str(e) for e in file_report.errors)
-            ctx.add_failure(f"Filename '{filename}' has validation errors: {error_details}")
+            ctx.add_failure(
+                f"Filename '{filename}' has validation errors: {error_details}"
+            )
         else:
             ctx.add_pass()
 
@@ -90,7 +95,9 @@ def check_drs_directory(ds, severity, project_id="cmip6"):
 
     # Fallback to legacy helper (CMIP6 / CORDEX style)
     if not drs_directory:
-        drs_directory, _, error_msg = _find_drs_directory_and_filename(filepath, project_id)
+        drs_directory, _, error_msg = _find_drs_directory_and_filename(
+            filepath, project_id
+        )
 
     if error_msg:
         ctx.add_failure(error_msg)
@@ -102,15 +109,18 @@ def check_drs_directory(ds, severity, project_id="cmip6"):
 
         if dir_report.errors:
             error_details = "; ".join(str(e) for e in dir_report.errors)
-            ctx.add_failure(f"DRS directory '{drs_directory}' has validation errors: {error_details}")
+            ctx.add_failure(
+                f"DRS directory '{drs_directory}' has validation errors: {error_details}"
+            )
         else:
             ctx.add_pass()
 
     except Exception as e:
-        ctx.add_failure(f"An unexpected error occurred during directory validation: {e}")
+        ctx.add_failure(
+            f"An unexpected error occurred during directory validation: {e}"
+        )
 
     return [ctx.to_result()]
-
 
 
 # ==============================================================================
@@ -121,11 +131,17 @@ def check_drs_filename_cv(
     drs_elements_hard_checks=[],
     project_id="CORDEX-CMIP6",
     severity=BaseCheck.HIGH,
+    use_esgvoc=False,
 ):
     """[FILE001] DRS building blocks in filename checked against CV."""
     check_id = "FILE001"
     description = f"[{check_id}] DRS Filename (against {project_id}_CV.json)"
     testctx = TestCtx(severity, description)
+
+    # Do not run if esgvoc is used
+    if use_esgvoc:
+        testctx.add_pass()
+        return [testctx.to_result()]
 
     # File suffix
     suffix = ".".join(os.path.basename(CheckerObject.filepath).split(".")[1:])
@@ -170,11 +186,17 @@ def check_drs_directory_cv(
     drs_elements_hard_checks,
     project_id="CORDEX-CMIP6",
     severity=BaseCheck.HIGH,
+    use_esgvoc=False,
 ):
     """[FILE001] DRS building blocks in directory path checked against CV."""
     check_id = "FILE001"
     description = f"[{check_id}] DRS Directory Structure (against {project_id}_CV.json)"
     testctx = TestCtx(severity, description)
+
+    # Do not run if esgvoc is used
+    if use_esgvoc:
+        testctx.add_pass()
+        return [testctx.to_result()]
 
     # DRS path
     drs_dir_checked, drs_dir_messages = _compare_CV(
