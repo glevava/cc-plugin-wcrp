@@ -27,9 +27,10 @@ dependencies = [
   "cf_xarray",
   "esgvoc",
   "pooch",
+  "pyfive >= 1.1.1",
   "pydantic>=2.12.5",
 ]
-version = "1.2.0"
+version = "2.1.0"
 
 [project.entry-points."compliance_checker.suites"]
 

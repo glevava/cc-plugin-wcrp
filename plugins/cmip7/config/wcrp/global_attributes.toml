@@ -138,7 +138,7 @@ is_required = true
 severity = "M"
 value_type = "str"
 is_required = false
-cv_source_collection = "organisation"
+cv_source_collection = "institution"
 cv_source_collection_key = "description"
 
 [global.attributes.institution_id]
@@ -146,14 +146,8 @@ cv_source_collection_key = "description"
 severity = "H"
 value_type = "str"
 is_required = true
-cv_source_collection = "organisation"
+cv_source_collection = "institution"
 
-[global.attributes.license]
-# Checks ATTR001 ATTR002 ATTR003 ATTR004
-severity = "L"
-value_type = "str"
-is_required = false
-pattern = ".*"
 
 [global.attributes.license_id]
 # Checks ATTR001 ATTR002 ATTR003 ATTR004

@@ -20,7 +20,7 @@ from checks.attribute_checks.check_attribute_suite import check_attribute_suite
 
 from checks.format_checks.check_format import check_format
 from checks.format_checks.check_compression import check_compression
-
+from checks.format_checks.check_internal_packing import  check_cmip7_packing
 from checks.consistency_checks.check_drs_filename_cv import (
     check_drs_filename,
     check_drs_directory,
@@ -383,6 +383,10 @@ class Cmip7ProjectCheck(WCRPBaseCheck):
             return check_compression(ds, severity=sev)
         except TypeError:
             return check_compression(ds, sev)
+    
+    def check_File_Internal_Packing(self, ds): 
+        sev = BaseCheck.HIGH
+        return check_cmip7_packing(ds, severity=sev)
 
     # -------------------------------------------------------------------------
     # 2) Global attributes

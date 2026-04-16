@@ -19,7 +19,7 @@ CV_COLLECTION_MAP = {
         "source_id": "source_id",
     },
     "cmip7": {
-        "institution_id": "organisation",
+        "institution_id": "institution",
         "source_id": "source",
     },
 }

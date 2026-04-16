@@ -90,18 +90,45 @@ def _coverage_from_time(ds):
         return None, None, None, f"Error converting time values: {e}"
 
 
+# Frequencies for which no time range token is expected in the filename.
+_TIMELESS_FREQUENCIES = {"fx", "ofx"}
+
+
 def check_time_range_vs_filename(ds, severity=BaseCheck.MEDIUM):
     """
     [TIME003] Check that the dataset time axis covers the time range declared in the filename.
+
+    Files with frequency 'fx' or 'ofx' are time-invariant: no time range token is expected
+    in their filename, and this check is skipped with a pass.
+    For all other frequencies, the absence of a time range token in the filename is itself
+    an error (the file is mis-named).
     """
     check_id = "TIME003"
     ctx = TestCtx(severity, f"[{check_id}] Check Time Range vs Filename")
+
+    # Read frequency from global attributes
+    frequency = getattr(ds, "frequency", None)
 
     filename = os.path.basename(ds.filepath())
     start_str, end_str, use_day_from_name = _extract_time_range_from_filename(filename)
 
     if not start_str or not end_str:
-        ctx.add_failure("No time range token found in filename; skipping VAR009.")
+        # No time range token found in filename.
+        if frequency in _TIMELESS_FREQUENCIES:
+            # Expected for fx/ofx — not a failure.
+            ctx.add_pass()
+        elif frequency is None:
+            # Cannot determine if time range is required without knowing frequency.
+            ctx.add_failure(
+                "No time range token found in filename and 'frequency' global attribute is missing; "
+                "cannot determine whether a time range is required."
+            )
+        else:
+            # Any other frequency should have a time range token — this is a real error.
+            ctx.add_failure(
+                f"No time range token found in filename, but frequency='{frequency}' "
+                "requires a time range (e.g. '_YYYYMM-YYYYMM.nc' or '_YYYYMMDD-YYYYMMDD.nc')."
+            )
         return [ctx.to_result()]
 
     try:

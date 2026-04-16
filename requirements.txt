@@ -18,3 +18,4 @@ toml
 cf_xarray
 esgvoc
 pooch
+pyfive >= 1.1.1
